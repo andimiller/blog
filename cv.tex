@@ -1,0 +1,256 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+% LaTeX Curriculum Vitae Template
+%
+% Copyright (C) 2004-2009 Jason Blevins <jrblevin@sdf.lonestar.org>
+% http://jblevins.org/projects/cv-template/
+%
+% You may use use this document as a template to create your own CV
+% and you may redistribute the source code freely. No attribution is
+% required in any resulting documents. I do ask that you please leave
+% this notice and the above URL in the source code if you choose to
+% redistribute this file.
+
+\documentclass[a4paper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Comment the following lines to use the default Computer Modern font
+% instead of the Palatino font provided by the mathpazo package.
+% Remove the 'osf' bit if you don't like the old style figures.
+% \usepackage[T1]{fontenc}
+% \usepackage[sc,osf]{mathpazo}
+
+% Set your name here
+\def\name{Andi Miller}
+
+% Replace this with a link to your CV if you like, or set it empty
+% (as in \def\footerlink{}) to remove the link in the footer:
+\def\footerlink{http://andimiller.net/}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {economics, statistics, mathematics},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.25in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large\scshape}
+\subsectionfont{\rmfamily\mdseries\itshape\large\scshape}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+% Listing environment with less spacing
+\newenvironment{packed}{
+\begin{itemize}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+
+%table spacing
+\renewcommand\arraystretch{1.08}% (MyValue=1.0 is for standard spacing)
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+% Alternatively, print name centered and bold:
+% \centerline{\huge \bf \name}
+
+\vspace{0.25in}
+
+\begin{minipage}{0.45\linewidth}
+  West View Cottage \\
+  Upperton \\
+  Petworth \\
+  West Sussex\\
+  GU28 9BE\\
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+  \begin{tabular}{ll}
+    Phone: & 07837 429193 \\
+    Email: & \href{mailto:andi@andimiller.net}{\tt andi@andimiller.net} \\
+    IRC: & Sylnai@irc.freenode.net \\
+    Homepage: & \href{http://andimiller.net/}{\tt andimiller.net} \\
+    Portfolio: & \href{https://github.com/andimiller/}{\tt https://github.com/andimiller/}
+  \end{tabular}
+\end{minipage}
+
+
+% \section*{Personal}
+% \begin{itemize}
+% \end{itemize}
+
+\section*{Skills and Experience}
+
+
+% \subsection*{Personal}
+% \begin{tabular}{ l p{13.5cm} }
+% Learning & I have taught myself the vast majority of my technological skills, and have become very quick at picking up new technologies and systems.\\
+% Teamwork & I have good teamwork skills after Lifeguarding for many years, and working in a group coding during my Degree.\\
+% Teaching & After multiple voluntary jobs teaching I have become good at explaining concepts to others, and tutoring them in using them.\\
+% \end{tabular}
+
+\subsection*{Languages}
+\begin{tabular}{ l p{14cm} }
+Scala & My main day to day language at DataSift, both in a java interoperable style, and in a functional style.\\
+C & Covered during my degree, used it for university work and personal projects, wrote patches for OpenSIPS and Asterisk while at Gradwell.\\
+C\# & Learnt while at College, used for many personal projects including a network monitor, a few small games, some of which had network capabilities.\\
+Java & Used during university for academic projects and used for multiple projects at DataSift.\\
+PHP & Maintained old PHP webapps at Gradwell and DataSift, using it for some of my own sites too.\\
+    Python & Worked on \href{http://www.jokosher.org/}{Jokosher} and \href{http://www.pitivi.org}{PiTiVi} as part of the Google Summer of Code, used for many personal projects including \href{https://github.com/andimiller/pizza-auth}{pizza-auth}, a large scale LDAP user management tool for EVE Online alliances.
+\end{tabular}
+
+\subsection*{Technologies}
+\begin{tabular}{ l p{12.3cm} }
+Multithreading & I have experimented with many different threading approaches, and Functional programming languages, including Python's multiprocessing module, and Haskell.\\
+Network Protocols & Have implimented a variety protocols in many languages, including IRC, HTTP, FTP and NTP.\\
+Server Admin & Have experience with managing many types of servers, including various Linux and BSD distrubutions, and Windows Server. Also maintain my own VPS for personal use running Debian.\\
+Typesetting & Writing up many project reports, and this CV in \LaTeX. I have also written a couple of \LaTeX to HTML converters.\\
+UNIX and Linux & After using *NIX systems for many years, I am more than competent at administering systems running a *NIX-like Operating System.\\
+Version Control & When coding I've used lots of Version Control systems, including SVN, Git and Bazaar.\\
+Virtualisation & I maintain a set of Virtual Machines for testing personal projects, and to stay up to date with different Operating Systems with minimal effort.\\
+Web Development & Multiple personal sites, making me familiar with XHTML, HTML5, CSS, AJAX and ECMAScript with and without jQuery.\\
+\end{tabular}
+
+% \section*{Interests}
+% \begin{itemize}
+% \item Multithreading.
+% \end{itemize}
+
+
+\pagebreak
+
+\section*{Education}
+
+\begin{itemize}
+  \item B.Eng. Software Engineering, Aberystwyth University, 2009 - 2013.
+	\begin{packed}
+	\item 2:1, just below a First
+	\item Averaged over 70\% in core Programming modules.
+	\end{packed}
+
+  \item Alton College, Alton, Surrey 2006 - 2008
+	\begin{packed}
+	\item A-Levels: Further Maths - C, Maths - A, Physics - B, Computing - A.
+	\item AS-Level: Electronics - B.
+	\end{packed}
+
+  \item Churchers College, Petersfield, Hampshire, 2000 - 2006.
+	\begin{packed}
+	\item 	GCSE: 2 A*'s, 4 A's, 3 B's, 2 C's
+	\end{packed}
+\end{itemize}
+
+
+\section*{Employment}
+
+\begin{itemize}
+\item Software Engineer, DataSift (MediaSift Ltd.), June 2013 - Present
+        \begin{packed}
+            \item Worked in an angile team developing scala microservices.
+            \item Practiced agile test driven development in a team.
+            \item Developed and maintained an in-house Domain Specific Language for transforming JSON
+            \item Maintained client-facing API libraries and their documentation
+        \end{packed}
+\end{itemize}
+
+\begin{itemize}
+\item VoIP Engineer, Gradwell dot com Limited, June 2011 to July 2012.
+        \begin{packed}
+            \item Maintained and made improvements to one of the largest award-winning Open Source VoIP stacks in the UK.
+            \item Regularly worked with both Support and System Administration departments.
+            \item Worked in a variety of languages, including Perl, C, Python and Ruby.
+            \item Worked in an engineering team using Jira and Mercurial.
+        \end{packed}
+\end{itemize}
+
+\begin{itemize}
+\item Freelance Coder (Google Summer of Code), Google, Summer 2010.
+	\begin{packed}
+	\item Worked to a strict deadline
+	\item Integrated into the community
+	\item Learned many new technologies, including:
+		\begin{packed}
+		\item DBus
+		\item GTK
+		\item Bazaar
+		\end{packed}
+	\end{packed}
+\item Lifeguard, Taro Leisure Center, Petersfield, D.C. Leisure, 2007 - 2009.
+	\begin{packed}
+	\item Acquired good Teamworking skills
+	\end{packed}
+\end{itemize}
+
+\section*{Voluntary Work}
+
+\begin{itemize}
+\item Swimming Teacher, Petersfield Open Air Swimming Club, 2007 - Present.
+\item Assistant Teacher, RSPB Wildlife Explorer Group, Pulborough, 2004 - 2008.
+\end{itemize}
+
+\section*{References}
+\begin{tabular}{ r l l }
+Capacity & Tutor & GSoC Project Mentor\\
+Name & Reyer Zwiggelaar & Michael Sheldon\\
+Address & Department of Computer Science & Department of Computer Science\\
+& Llandinam Building & Llandinam Building\\
+& Aberystwyth University & Aberystwyth University\\
+& Aberystwyth & Aberystwyth\\
+& Ceredigion & Ceredigion\\
+& SY23 3DB & SY23 3DB\\
+Email & \href{mailto:rrz@aber.ac.uk}{rzz@aber.ac.uk} & \href{mailto:elleo@gnu.org}{elleo@gnu.org}\\
+Telephone & 01970 622219 & 07957 686011\\
+\end{tabular}
+
+\vfill
+
+% Footer
+\begin{center}
+  \begin{footnotesize}
+    Last updated: \today \\
+    \href{\footerlink}{\texttt{\footerlink}}
+  \end{footnotesize}
+\end{center}
+
+\end{document}
+
