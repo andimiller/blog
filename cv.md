@@ -50,7 +50,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 * JVM first, integrated with Kafka Streams, Hadoop and Elastic.
 * Implemented with ANTLR and Scala.
 
-\pagebreak
+\newpage
 
 # Employment
 ## Senior Software Engineer, Meltwater UK, 2018 - Present
