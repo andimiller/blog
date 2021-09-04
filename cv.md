@@ -1,5 +1,6 @@
 ---
-title-meta: "Andi Miller - CV" 
+title: "Andi Miller - CV"
+title-meta: "Andi Miller - CV"
 author-meta: "Andi Miller"
 date: "3rd September 2021"
 link: "https://andimiller.net/"
