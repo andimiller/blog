@@ -36,7 +36,7 @@ Rust    | Personal projects and open source projects.
 Functional Programming | Experience writing purely functional software in multiple languages.
 Stream Processing      | Kafka, zeromq, RabbitMQ, Pulsar and other high throughput streaming technologies.
 Big Data               | Hadoop, Elastic, Cassandra and Spark for storage and aggregation.
-Distributed Systems    | Have built concurrent distributed systems with actors and conesus systems.
+Distributed Systems    | Have built concurrent distributed systems with actors and concensus systems.
 Architecture           | Have experience building data processing architectures at scale.
 Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
 Observability          | Enthusiastic about metrics and tracing, having used them extensively in production.
@@ -60,7 +60,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 * Practiced DevOps maintaining our own infrastructure and being on call.
 * Practiced Type Driven Development and Test Driven Development.
 * Maintained an in-house Domain Specific Language for transforming JSON at scale in Scala.
-* Worked on intgestion of firehoses into Melwater's systems.
+* Worked on intgestion of firehoses into Meltwater's systems.
 * Helped improve and develop the Meltwater Public API
 
 ## Platform Engineer, DataSift, 2013 - 2018
