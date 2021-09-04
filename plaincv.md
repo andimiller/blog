@@ -33,7 +33,7 @@ Technologies
 | Distributed Systems    | Have built concurrent distributed systems with actors and concensus systems.                               |
 | Architecture           | Have experience building data processing architectures at scale.                                           |
 | Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste. |
-| Observability          | Enthusiastic about metrics and tracing, having used them extensively in production.                        |
+| Observability          | Enthusiastic about metrics and tracing, having used them extensively.                                      |
 
 Work
 ====
