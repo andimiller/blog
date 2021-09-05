@@ -1,14 +1,12 @@
 ---
 title: "Andi Miller - CV"
 title-meta: "Andi Miller - CV"
+pdf-header: "Andi Miller"
 author-meta: "Andi Miller"
 date: "3rd September 2021"
 link: "https://andimiller.net/"
 papersize: "a4"
 ---
-
-# Andi Miller
-
 
 |
 ---|---

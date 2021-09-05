@@ -1,0 +1,51 @@
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+
+
+pre {
+    background-color: ##002b36
+}
+
+.sourceCode .kw { color: #859900; }
+.sourceCode .dt { color: #cb4b16; }
+
+.sourceCode .dv, .sourceCode .bn, .sourceCode .fl { color: #2aa198; }
+.sourceCode .ch { color: #dc322f; }
+.sourceCode .st { color: #2aa198; }
+.sourceCode .co { color: #586e75; }
+.sourceCode .ot { color: #859900; }
+.sourceCode .al { color: #d33682; font-weight: bold; }
+.sourceCode .fu { color: #268bd2; }
+.sourceCode .re { }
+.sourceCode .er { color: #ffffff; font-weight: bold; background-color: #ff0000; }
+
