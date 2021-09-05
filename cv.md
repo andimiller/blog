@@ -34,7 +34,7 @@ Rust    | Personal projects and open source projects.
 Functional Programming | Experience writing purely functional software in multiple languages.
 Stream Processing      | Kafka, zeromq, RabbitMQ, Pulsar and other high throughput streaming technologies.
 Big Data               | Hadoop, Elastic, Cassandra and Spark for storage and aggregation.
-Distributed Systems    | Have built concurrent distributed systems with actors and concensus systems.
+Distributed Systems    | Have built concurrent distributed systems with actors and consensus systems.
 Architecture           | Have experience building data processing architectures at scale.
 Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
 Observability          | Enthusiastic about metrics and tracing, having used them extensively.
@@ -42,7 +42,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 # Work
 ## Patent US10579827B2
 * Optimisation for HyperLogLog which can reduce memory use by up to N where N is the number of nodes in the cluster.
-* Included lazy bucketing and preallocation of data around an Elastic cluster.
+* Included lazy bucketing and pre-allocation of data around an Elastic cluster.
 
 ## [IDML](https://idml.io/)
 * Open source JSON processing language used for data processing at DataSift and Meltwater
@@ -58,7 +58,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 * Practiced DevOps maintaining our own infrastructure and being on call.
 * Practiced Type Driven Development and Test Driven Development.
 * Maintained an in-house Domain Specific Language for transforming JSON at scale in Scala.
-* Worked on intgestion of firehoses into Meltwater's systems.
+* Worked on ingestion of firehoses into Meltwater's systems.
 * Helped improve and develop the Meltwater Public API
 
 ## Platform Engineer, DataSift, 2013 - 2018
