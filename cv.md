@@ -41,52 +41,63 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 
 # Work
 ## Patent US10579827B2
-* Optimisation for HyperLogLog which can reduce memory use by up to N where N is the number of nodes in the cluster.
-* Included lazy bucketing and pre-allocation of data around an Elastic cluster.
+
+- Optimisation for HyperLogLog which can reduce memory use by up to N where N is the number of nodes in the cluster.
+- Included lazy bucketing and pre-allocation of data around an Elastic cluster.
 
 ## [IDML](https://idml.io/)
-* Open source JSON processing language used for data processing at DataSift and Meltwater
-* JVM first, integrated with Kafka Streams, Hadoop and Elastic.
-* Implemented with ANTLR and Scala.
+
+- Open source JSON processing language used for data processing at DataSift and Meltwater
+- JVM first, integrated with Kafka Streams, Hadoop and Elastic.
+- Implemented with ANTLR and Scala.
 
 \newpage
 
 # Employment
+
 ## Senior Software Engineer, Meltwater UK, 2018 - Present
-* Developed purely functional Scala microservices with the typelevel stack.
-* Worked in an agile team using scrum development practices.
-* Practiced DevOps maintaining our own infrastructure and being on call.
-* Practiced Type Driven Development and Test Driven Development.
-* Maintained an in-house Domain Specific Language for transforming JSON at scale in Scala.
-* Worked on ingestion of firehoses into Meltwater's systems.
-* Helped improve and develop the Meltwater Public API
+
+- Developed purely functional Scala microservices with the typelevel stack.
+- Worked in an agile team using scrum development practices.
+- Practiced DevOps maintaining our own infrastructure and being on call.
+- Practiced Type Driven Development and Test Driven Development.
+- Maintained an in-house Domain Specific Language for transforming JSON at scale in Scala.
+- Worked on ingestion of firehoses into Meltwater's systems.
+- Helped improve and develop the Meltwater Public API
 
 ## Platform Engineer, DataSift, 2013 - 2018
-* Developed microservices in Scala with a combination of Dropwizard and scalaz-based stacks, switching to typelevel later.
-* Worked in agile teams using scrum development practices.
-* Co-developed an in-house Domain Specific Language for transforming JSON at scale in Scala.
-* Worked on privacy-first analysis of Facebook data in Facebook's datacenter.
-* Worked on the DataSift open source client libraries, with a focus on the Python one
+
+- Developed microservices in Scala with a combination of Dropwizard and scalaz-based stacks, switching to typelevel later.
+- Worked in agile teams using scrum development practices.
+- Co-developed an in-house Domain Specific Language for transforming JSON at scale in Scala.
+-* Worked on privacy-first analysis of Facebook data in Facebook's datacentre.
+- Worked on the DataSift open source client libraries, with a focus on the Python one
 
 ## VoIP Engineer, Gradwell dot com Limited, 2011 - 2012
-* Maintained and developed a large award-winning Open Source VoIP stack
-* Regularly worked with both Support and Sysadmin departments
-* Worked in a variety of languages, including Perl, C, Python and Ruby
-* Helped migrate from CVS to Mercurial
-* Helped move to and administer Jira
-* Re-engineered the VoIP platform to work across multiple datacenters.
-* Developed deployment infrastructure with puppet to reduce deployment time from 10 hours to 1.
+
+- Maintained and developed a large award-winning Open Source VoIP stack
+- Regularly worked with both Support and Sysadmin departments
+- Worked in a variety of languages, including Perl, C, Python and Ruby
+- Helped migrate from CVS to Mercurial
+- Helped move to and administer Jira
+- Re-engineered the VoIP platform to work across multiple datacentres.
+- Developed deployment infrastructure with puppet to reduce deployment time from 10 hours to 1.
 
 ## Freelance Coder (Google Summer of Code), Google, 2010
-* Did some experimental work on integrating open source video and audio editors Pitivi and Jokosher
-* Worked with GTK and DBus
+
+- Did some experimental work on integrating open source video and audio editors Pitivi and Jokosher
+- Worked with GTK and DBus
 
 # Education
+
 ## B. Eng. Software Engineering, University of Wales Aberystwyth, 2009 - 2013
-* 2:1
-* Averaged over 70% in Programming modules.
-* Opted into Open Source and Artificial Intelligence modules.
+
+- 2:1
+- Averaged over 70% in Programming modules.
+- Opted into Open Source and Artificial Intelligence modules.
 
 ## Alton College, Alton, Surrey, 2006 - 2008
-* 4 A-Levels including Futher Maths
-* 1 AS-level
+
+- 4 A-Levels including Futher Maths
+- 1 AS-level
+
