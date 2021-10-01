@@ -14,6 +14,10 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "talks/*.html" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "css/*.scss" $ do
         route $ setExtension "css"
         let compressCssItem = fmap compressCss
