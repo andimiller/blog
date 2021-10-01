@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andi Miller">
+  <title>What’s new in scala 3?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">What’s new in scala 3?</h1>
+  <p class="author">Andi Miller</p>
+  <p class="date">1st October 2021</p>
+</section>
+
+<section id="whats-scala-3" class="title-slide slide level1">
+<h1>What’s scala 3?</h1>
+<ul>
+<li>Next main version of scala</li>
+<li>Fixes some issues with scala 3</li>
+<li>Introduces cool features academics like</li>
+</ul>
+<aside class="notes">
+<p>So what’s scala 3 about, as you can guess from the number it’s the next major version of scala,</p>
+<p>It fixes some issues with scala 3, notably around implicits, which we’ll come toString</p>
+<p>And it adds some cool things that academics like, some of these may be useful, some may not</p>
+</aside>
+</section>
+
+<section>
+<section id="new-syntax" class="title-slide slide level1">
+<h1>New syntax</h1>
+<aside class="notes">
+<p>We’ll start off by looking at the new syntax, this was the most contentious part, but it seems like people are pretty positive on it now that it’s out.</p>
+</aside>
+</section>
+<section id="quiet-if" class="slide level2">
+<h2>Quiet if</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>x <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;negative&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>x <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;zero&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;positive&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span> then</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;negative&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span> x <span class="op">==</span> <span class="dv">0</span> then</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;zero&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;positive&quot;</span></span></code></pre></div>
+<aside class="notes">
+<p>You’ll see that if now has a “then” keyword, and doesn’t need the parens any more”</p>
+</aside>
+</section>
+<section id="quiet-for" class="slide level2">
+<h2>Quiet for</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  x <span class="op">&lt;-</span> xs</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y <span class="op">&lt;-</span> ys</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">yield</span> x<span class="op">+</span>y</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  x <span class="op">&lt;-</span> xs</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  y <span class="op">&lt;-</span> ys</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">yield</span> x<span class="op">+</span>y</span></code></pre></div>
+<aside class="notes">
+<p>You’ll see the most notable change here is that the curly braces are gone, which is going to be a recurring theme</p>
+</aside>
+</section>
+<section id="optional-braces" class="slide level2">
+<h2>Optional Braces</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> SomeObject <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> foo <span class="op">=</span> <span class="dv">123</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> SomeObject<span class="op">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> foo <span class="op">=</span> <span class="dv">123</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>end SomeObject <span class="co">// optional</span></span></code></pre></div>
+<aside class="notes">
+<p>This is the big one, Scala 2 got a lot of criticism for being hard to read because it followed your standard java or C style curly braces, those are now fully optional, and you can write with python style indentation if you’d like.</p>
+<p>As you can see you replace the opening curly brace with a colon, then indent the contents, and we’ve got an optional <code>end</code> marker, which can also be named, and the compiler will check that it closes something with that name.</p>
+<p>This works for anything that had curly braces in scala 2, objects, classes, traits, groups of expressions and so on.</p>
+</aside>
+</section></section>
+<section>
+<section id="implicits-rework" class="title-slide slide level1">
+<h1>Implicits Rework</h1>
+<aside class="notes">
+<p>Next up we’ve got the implicits rework, this is the biggest breaking chage from scala 2 to 3, in scala 2 implicits were added to see what people built with them, so they’ve become much more opinionated in scala 3, now that the community’s agreed on what were good and bad uses of implicits.</p>
+</aside>
+</section>
+<section id="implicit-values" class="slide level2">
+<h2>Implicit Values</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">implicit</span> <span class="kw">val</span> config<span class="op">:</span> Configuration <span class="op">=</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Configuration</span><span class="op">(</span>name <span class="op">=</span> <span class="st">&quot;my-program&quot;</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">printName</span><span class="op">(</span><span class="kw">implicit</span> c<span class="op">:</span> Configuration<span class="op">)</span> <span class="op">=</span> c<span class="op">.</span>name</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>given Configuration <span class="op">=</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Configuration</span><span class="op">(</span>name <span class="op">=</span> <span class="st">&quot;my-program&quot;</span><span class="op">)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">printName</span><span class="op">(</span>using c<span class="op">:</span> Configuration<span class="op">)</span> <span class="op">=</span> c<span class="op">.</span>name</span></code></pre></div>
+<aside class="notes">
+<p>First up we’ve got implicit values, these were used to define a canonical value of a given type, as you can see in the scala 2 example here, I’m declaring that this is /the/ Configuration value for the current scope, if anything wants a value of type <code>Configuration</code>, this is it.</p>
+<p>The method there will ask for an “implicit” config, using the same keyword.</p>
+<p>In scala 3 we can now omit the name, and it’s got it’s own keyword now, we say that this part of the program is written, “given this Configuration”, which is the kind of wording that makes computer scientists and mathematicians happy.</p>
+<p>And again you’ll see in scala 3, the method that uses the Configuration has a proper dedicated keyword, where we say “using” as the other half of given.</p>
+</aside>
+</section>
+<section id="implicit-conversions" class="slide level2">
+<h2>Implicit Conversions</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">implicit</span> <span class="kw">def</span> <span class="fu">intToString</span><span class="op">(</span>i<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> String <span class="op">=</span> i<span class="op">.</span>toString</span></code></pre></div>
+<aside class="notes">
+<p>In scala 2 we had the concept of implicit conversions, you can see here they’re declared with the <code>implicit def</code> keywords.</p>
+<p>This one will automatically convert any integer into a string, if you’re trying to treat it as a string.</p>
+<p>As you can probably guess, this was actually much too powerful to be used unless you were extremely specific about the types, and even then it acted as a layer of hidden magic that programmers just didn’t appreciate, so in scala 3 it’s gone.</p>
+</aside>
+</section>
+<section id="implicit-classes-extensions" class="slide level2">
+<h2>Implicit Classes / Extensions</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">implicit</span> <span class="kw">class</span> <span class="fu">DoubleIntSyntax</span><span class="op">(</span>i<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="dt">double</span><span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> i <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">extension</span> <span class="op">(</span>i<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="dt">double</span><span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> i<span class="op">*</span><span class="dv">2</span></span></code></pre></div>
+<aside class="notes">
+<p>Next up we’ve got implicit classes, in scala 2 these were used to add extension methods to things, you’ll see I’ve declared something called DoubleIntSyntax which wraps an Int, and adds a method called double, often you would add conversion methods like this rather than using the previous conversions, because now you’d explicitly call a method to convert something.</p>
+<p>In scala 3 you’ll see we now have an <code>extension</code> keyword, and you just declare an extension, you could name it if you wanted, or make it generic.</p>
+</aside>
+</section>
+<section id="first-class-type-class-support" class="slide level2">
+<h2>First class Type Class Support</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> SemiGroup<span class="op">[</span>T<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">combine</span><span class="op">(</span>a<span class="op">:</span> T<span class="op">,</span> b<span class="op">:</span> T<span class="op">):</span> T</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Monoid<span class="op">[</span>T<span class="op">]</span> <span class="kw">extends</span> SemiGroup<span class="op">[</span>T<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="dt">unit</span><span class="op">:</span> T</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">implicit</span> <span class="kw">class</span> MonoidSyntax<span class="op">[</span>T<span class="op">](</span>t<span class="op">:</span> T<span class="op">)(</span><span class="kw">implicit</span> m<span class="op">:</span> Monoid<span class="op">[</span>T<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">combine</span><span class="op">(</span>other<span class="op">:</span> T<span class="op">)</span> <span class="op">=</span> m<span class="op">.</span><span class="fu">combine</span><span class="op">(</span>t<span class="op">,</span> other<span class="op">)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">implicit</span> <span class="kw">val</span> stringMonad<span class="op">:</span> Monoid<span class="op">[</span>String<span class="op">]</span> <span class="op">=</span> <span class="kw">new</span> Monoid<span class="op">[</span>String<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">combine</span><span class="op">(</span>a<span class="op">:</span> String<span class="op">,</span> b<span class="op">:</span> String<span class="op">)</span> <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="dt">unit</span> <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>And if we put all this together, what was this all for? where did we end up?</p>
+<p>Here’s the scala 2 encoding for a Type Class, which is a way of doing ad-hoc polymorphism.</p>
+<p>You’ll see we declare the traits to represent the behaviour, then the implicit class to add the syntax, then declare an instance for string.</p>
+</aside>
+</section>
+<section id="first-class-type-class-support-1" class="slide level2">
+<h2>First class Type Class Support</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> SemiGroup<span class="op">[</span>T<span class="op">]:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extension</span> <span class="op">(</span>x<span class="op">:</span> T<span class="op">)</span> <span class="kw">def</span> <span class="fu">combine</span> <span class="op">(</span>y<span class="op">:</span> T<span class="op">):</span> T</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Monoid<span class="op">[</span>T<span class="op">]</span> <span class="kw">extends</span> SemiGroup<span class="op">[</span>T<span class="op">]:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="dt">unit</span><span class="op">:</span> T</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>given Monoid<span class="op">[</span>String<span class="op">]</span> <span class="kw">with</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extension</span> <span class="op">(</span>x<span class="op">:</span> String<span class="op">)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">combine</span> <span class="op">(</span>y<span class="op">:</span> String<span class="op">):</span> String <span class="op">=</span> x <span class="op">+</span> y</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="dt">unit</span><span class="op">:</span> String <span class="op">=</span> <span class="st">&quot;&quot;</span></span></code></pre></div>
+<aside class="notes">
+<p>Over here in scala 3, you’ll see that we can now just define a SemiGroup as having an extension as part of it’s interface, and in general this is just a lot cleaner.</p>
+<p>You’ll note I don’t need to name my string monoid any more, so there’s less redundancy going on.</p>
+</aside>
+</section></section>
+<section id="strict-equality" class="title-slide slide level1">
+<h1>Strict Equality</h1>
+<div class="sourceCode" id="cb9"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="st">&quot;123&quot;</span> <span class="co">// false</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">!=</span> <span class="st">&quot;123&quot;</span> <span class="co">// true</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3 with scala.language.strictEquality</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="st">&quot;123&quot;</span> <span class="co">// compiler error</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">!=</span> <span class="st">&quot;123&quot;</span> <span class="co">// also a compiler error</span></span></code></pre></div>
+<aside class="notes">
+<p>Because Scala is so linked to java, in scala 2 we’d use the java <code>equals</code> method to compare things with <code>==</code>, this was widely regarded as a bad move, and there were libraries to add a <code>===</code> which checks that both sides are the same type before allowing it to compile.</p>
+<p>In scala 3 we can get this out of the box by enabling strict equality.</p>
+</aside>
+</section>
+
+<section>
+<section id="types" class="title-slide slide level1">
+<h1>Types</h1>
+
+</section>
+<section id="opaque-types" class="slide level2">
+<h2>Opaque types</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>opaque <span class="kw">type</span> Name <span class="op">=</span> String</span></code></pre></div>
+<aside class="notes">
+<p>We’ve got opaque types in scala 3, which let us declare a wrapper type that’s only known as a wrapper in the file where you’ve declared the type.</p>
+<p>This makes it easy to make what haskell calls “newtypes”, a wrapper that effectively compiles out, and only exists at build time.</p>
+</aside>
+</section>
+<section id="opaque-types-in-action" class="slide level2">
+<h2>Opaque types in action</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>opaque <span class="kw">type</span> NonEmptyString <span class="op">=</span> String</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Code inside here is allowed to know it&#39;s a String</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> NonEmptyString<span class="op">:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">fromString</span><span class="op">(</span>s<span class="op">:</span> String<span class="op">):</span> <span class="bu">Option</span><span class="op">[</span>NonEmptyString<span class="op">]</span> <span class="op">=</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Option</span><span class="op">(</span>s<span class="op">).</span><span class="fu">filter</span><span class="op">(</span>_<span class="op">.</span>nonEmpty<span class="op">)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extension</span> <span class="op">(</span>nes<span class="op">:</span> NonEmptyString<span class="op">)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> toString<span class="op">:</span> String <span class="op">=</span> nes</span></code></pre></div>
+<aside class="notes">
+<p>Here in my example we’re implementing <code>NonEmptyString</code>, a <code>String</code> which is never empty.</p>
+<p>In scala 2 we’d have to put that inside some kind of class wrapper, or do some trickery with macros, but here we can just declare that it’s an opaque type;</p>
+<p>Then give it a companion object that can create one and patch methods onto it with extension</p>
+<p>As you can see in the comment, only code inside this object is allowed to treat a <code>NonEmptyString</code> as if it’s a standard <code>String</code>, and it’s not boxed at runtime.</p>
+</aside>
+</section>
+<section id="context-functions" class="slide level2">
+<h2>Context Functions</h2>
+<aside class="notes">
+<p>Following on from the theme of creating purpose-built abstractions, next we’ve got a type of Dependency Injection called a Context Function</p>
+</aside>
+</section>
+<section id="context-functions-in-action" class="slide level2">
+<h2>Context Functions in Action</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Thing I am testing&quot;</span> should <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;add one and two&quot;</span> in <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    thing<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">).</span><span class="fu">assertEquals</span><span class="op">(</span><span class="dv">3</span><span class="op">)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;add numbers in general&quot;</span> in <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    forAll <span class="op">{</span> <span class="op">(</span>a<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> b<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      thing<span class="op">.</span><span class="fu">add</span><span class="op">(</span>a<span class="op">,</span> b<span class="op">)</span> <span class="op">==</span> a<span class="op">+</span>b</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>This one’s a real example I was building, you’ll see here there’s a little DSL for building tests, this is the real DSL used by scalatest, a popular testing framework.</p>
+<p>I wanted to reimplement a more lightweight version of this on top of a functional testing library, so I wanted to recreate this syntax.</p>
+<p>You’ll note that on the outside we’ve got the name of the thing we’re testing, and that should probably be passed in.. somehow.</p>
+</aside>
+</section>
+<section id="context-function-usage" class="slide level2">
+<h2>Context Function Usage</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>opaque <span class="kw">type</span> TestSubject <span class="op">=</span> String</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">extension</span> <span class="op">(</span>s<span class="op">:</span> String<span class="op">)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">in</span><span class="op">(</span>body<span class="op">:</span> <span class="bu">Any</span><span class="op">)(</span>using subject<span class="op">:</span> TestSubject<span class="op">)</span> <span class="op">=</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">registerTest</span><span class="op">(</span>subject<span class="op">,</span> s<span class="op">,</span> body<span class="op">)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">should</span><span class="op">(</span>body<span class="op">:</span> TestSubject <span class="op">?=&gt;</span> <span class="bu">Any</span><span class="op">)</span> <span class="op">=</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    given TestSubject <span class="op">=</span> s</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">body</span><span class="op">()</span></span></code></pre></div>
+<aside class="notes">
+<p>I’ve simplified this a bit, but you’ll see I’ve declared an opaque type, so a little wrapper around String that is a TestSubject.</p>
+<p>We’re then declaring some extension methods on strings, the <code>in</code> method, used to write our inner tests, will take a <code>TestSubject</code> with the <code>using</code> keyword we saw earlier, then use that to register the test with the right outer and inner names.</p>
+<p>I’ve then declared the <code>should</code> keyword, but I’ve used this new symbol, the questionmark arrow, which says the body is a <code>Context Function</code> and our context is a <code>TestSubject</code>, then in the body, I just set it with given, then run the body.</p>
+<p>This gives us a very powerful way to inject dependencies, since we can now ask for lambdas that take context.</p>
+</aside>
+</section>
+<section id="enums-algebraic-data-types" class="slide level2">
+<h2>Enums (Algebraic Data Types)</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 2</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">sealed</span> <span class="kw">trait</span> <span class="bu">Option</span><span class="op">[+</span>T<span class="op">]</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">sealed</span> <span class="kw">class</span> <span class="bu">Some</span><span class="op">(</span>t<span class="op">:</span> T<span class="op">)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">object</span> <span class="bu">None</span> <span class="kw">extends</span> <span class="bu">Option</span><span class="op">[</span>Nothing<span class="op">]</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>enum <span class="bu">Option</span><span class="op">[+</span>T<span class="op">]</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="bu">Some</span><span class="op">(</span>t<span class="op">:</span> T<span class="op">)</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="bu">None</span></span></code></pre></div>
+<aside class="notes">
+<p>Now for a more simple one, enum types, or, Algebraic Data Types, you’ll see here back in scala 2 we’d define a sealed trait, then implement the trait for each branch of our ADT.</p>
+<p>In scala 3 there’s now a specific enum keyword which will take care of this for us and we just list out all of the cases, you would be surprised how much boilerplate this saves you.</p>
+<p>This will also handle generics nicely.</p>
+</aside>
+</section>
+<section id="intersection-and-union-types" class="slide level2">
+<h2>Intersection and Union Types</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">run</span><span class="op">(</span>config<span class="op">:</span> AppConfig <span class="op">&amp;</span> DatabaseConfig<span class="op">)</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">add</span><span class="op">(</span>input<span class="op">:</span> <span class="bu">Int</span> <span class="op">|</span> Double <span class="op">|</span> BigDecimal<span class="op">)</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div>
+<aside class="notes">
+<p>For another pretty simple one we’ve got Intersection and Union types, you can see there the and sign lets you say that something is multiple types at once, and the or sign lets you say that something is one of these types.</p>
+<p>These can both be very powerful abstractions if used right, and give you a bit of an escape hatch if you do need to operate over a quick set of types but don’t want to declare a load of wrappers.</p>
+<p>Think about dealing with something like JSON, where it’s String, or Int or Float or Array or Object, you don’t necessarily want a ton of wrappers to express that and keep track of it.</p>
+</aside>
+</section>
+<section id="explicit-nulls" class="slide level2">
+<h2>Explicit Nulls</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3 with -Yexplicit-nulls</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> x<span class="op">:</span> String <span class="op">=</span> <span class="kw">null</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// error: found `Null`, but required `String`</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> y<span class="op">:</span> String <span class="op">|</span> Null <span class="co">// compiles</span></span></code></pre></div>
+<aside class="notes">
+<p>Another change to the type system is that you can opt into removing Null from the normal type hierarchy.</p>
+<p>If you do the compiler won’t allow you to assign null to anything unless you’ve marked it as nullable using an intersection type like here.</p>
+<p>This is huge for preventing errors in more unruly or object-oriented codebases, and is a feature I plan to enable in most codebases.</p>
+</aside>
+</section>
+<section id="match-types" class="slide level2">
+<h2>Match Types</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Scala 3</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> Elem<span class="op">[</span>X<span class="op">]</span> <span class="op">=</span> X <span class="cf">match</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> String      <span class="op">=&gt;</span> <span class="bu">Char</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="bu">Array</span><span class="op">[</span>t<span class="op">]</span>    <span class="op">=&gt;</span> t</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="bu">Iterable</span><span class="op">[</span>t<span class="op">]</span> <span class="op">=&gt;</span> t</span></code></pre></div>
+<aside class="notes">
+<p>A type system feature that people have been asking for for a while are dependent types, depending on one type, pick another type.</p>
+<p>This has been implemented in scala 3 as Match Types, they let you match on some incoming type and say what the output type is.</p>
+<p>In this example you’ll see that you could use it to abstract over container types, including String, which would usually be kind of awkward due to String not taking a generic parameter.</p>
+</aside>
+</section></section>
+<section>
+<section id="metaprogramming" class="title-slide slide level1">
+<h1>Metaprogramming</h1>
+<aside class="notes">
+<p>And for our last big category, metaprogramming, macros became a bit of a mess in scala 2 so they’ve been simplified in scala 3 with much more intentional features.</p>
+</aside>
+</section>
+<section id="inline" class="slide level2">
+<h2>Inline</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>inline <span class="kw">val</span> hello <span class="op">=</span> <span class="st">&quot;hello world&quot;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>inline <span class="kw">def</span> <span class="dt">double</span><span class="op">(</span>i<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="op">=</span> i<span class="op">*</span><span class="dv">2</span></span></code></pre></div>
+<aside class="notes">
+<p>We’ve got a new keyword, it’s called inline, and it guarantees that the compiler will always inline the value, this is actually quite important when it comes to macros, but it can help speed up your own code if you’re really getting into profiling.</p>
+<p>As you can see I’ve got an inline value there, and an inline method, that method body will just be expanded into the callsite, at runtime there will never actually be a method called double.</p>
+</aside>
+</section>
+<section id="inline-parameters" class="slide level2">
+<h2>Inline Parameters</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>inline <span class="kw">def</span> timed<span class="op">[</span>T<span class="op">](</span>inline body<span class="op">:</span> T<span class="op">):</span> T <span class="op">=</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> start <span class="op">=</span> System<span class="op">.</span><span class="fu">nanoTime</span><span class="op">()</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> result <span class="op">=</span> body</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> end <span class="op">=</span> System<span class="op">.</span><span class="fu">nanoTime</span><span class="op">()</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span><span class="ss">s&quot;</span><span class="st">operation took </span><span class="ss">${</span>end<span class="op">-</span>start<span class="ss">}</span><span class="st"> nanos</span><span class="ss">&quot;</span><span class="op">)</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  result</span></code></pre></div>
+<aside class="notes">
+<p>Inlines are cool, but to really restart getting stuff done, we’ve got inline parameters, this guarantees that the body will be inlined into this method, and then this method will be inlined into it’s call site, for when you really care about performance</p>
+</aside>
+</section>
+<section id="basic-macros-on-literals" class="slide level2">
+<h2>Basic Macros on Literals</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>inline <span class="kw">def</span> logIfEnabled<span class="op">[</span>T<span class="op">](</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    inline enabled<span class="op">:</span> Boolean <span class="op">&amp;</span> Singleton<span class="op">,</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    inline body<span class="op">:</span> T<span class="op">):</span> T <span class="op">=</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> result <span class="op">=</span> body</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>enabled<span class="op">)</span> then</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span><span class="op">(</span>result<span class="op">)</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  result</span></code></pre></div>
+<aside class="notes">
+<p>And for a quick look at what this means, here’s a macro.</p>
+<p>You’ll see this is a logger that compiles out when it’s disabled.</p>
+<p>The <code>enabled</code> argument is both a boolean and a singleton, so we know it’s value at compile time, and the body is inlined.</p>
+<p>If that boolean is set to true, this will compile down to an extra println, and if it’s set to false, this will completely compile out.</p>
+</aside>
+</section></section>
+<section id="conclusion" class="title-slide slide level1">
+<h1>Conclusion</h1>
+<ul>
+<li>Scala 3 is switching to intention-based abstractions</li>
+<li>There’s a lot of cool stuff, some of which will filter back into Java or Kotlin</li>
+</ul>
+</section>
+
+<section id="any-questions" class="title-slide slide level1">
+<h1>Any Questions?</h1>
+
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+      
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
