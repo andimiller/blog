@@ -39,7 +39,8 @@ jobs:
           path: |
             ~/.cabal/store
             dist-newstyle
-          key: cabal
+            /nix/store
+          key: cabal-and-nix-store
       - run: ./build.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
