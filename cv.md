@@ -20,7 +20,7 @@ Portfolio|[https://github.com/andimiller/](https://github.com/andimiller/)
 
 |
 - | -----------
-Scala   | 7 years of experience, with 4 years of purely functional development, current main language.
+Scala   | 8 years of experience, with 5 years of purely functional development, current main language.
 Java    | Experience using Java for backend development.
 C       | Commercial experience writing patches for OpenSIPS and Asterisk while at Gradwell.
 Python  | Used for many projects including open source infrastructure for EVE Online alliances.
@@ -33,7 +33,7 @@ Rust    | Personal projects and open source projects.
 --- | ---------
 Functional Programming | Experience writing purely functional software in multiple languages.
 Stream Processing      | Kafka, zeromq, RabbitMQ, Pulsar and other high throughput streaming technologies.
-Big Data               | Hadoop, Elastic, Cassandra and Spark for storage and aggregation.
+Big Data               | Druid, Pinot, Elastic, Cassandra and Spark for storage and aggregation.
 Distributed Systems    | Have built concurrent distributed systems with actors and consensus systems.
 Architecture           | Have experience building data processing architectures at scale.
 Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
@@ -55,7 +55,14 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 
 # Employment
 
-## Senior Software Engineer, Meltwater UK, 2018 - Present
+## Senior Software Engineer, Permutive, 2022 - Present
+
+- Worked on purely functional Scala microservices with the typelevel stack.
+- Worked in an agile team using scrum development practices.
+- Extended routing products to support new destinations.
+- Worked on redesigning insights products.
+
+## Senior Software Engineer, Meltwater UK, 2018 - 2022
 
 - Developed purely functional Scala microservices with the typelevel stack.
 - Worked in an agile team using scrum development practices.
@@ -70,7 +77,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 - Developed microservices in Scala with a combination of Dropwizard and scalaz-based stacks, switching to typelevel later.
 - Worked in agile teams using scrum development practices.
 - Co-developed an in-house Domain Specific Language for transforming JSON at scale in Scala.
--* Worked on privacy-first analysis of Facebook data in Facebook's datacentre.
+- Worked on privacy-first analysis of Facebook data in Facebook's datacentre.
 - Worked on the DataSift open source client libraries, with a focus on the Python one
 
 ## VoIP Engineer, Gradwell dot com Limited, 2011 - 2012
@@ -95,9 +102,3 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 - 2:1
 - Averaged over 70% in Programming modules.
 - Opted into Open Source and Artificial Intelligence modules.
-
-## Alton College, Alton, Surrey, 2006 - 2008
-
-- 4 A-Levels including Futher Maths
-- 1 AS-level
-
