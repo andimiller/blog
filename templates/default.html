@@ -8,6 +8,12 @@
 	<title>$title$ - Andi Miller</title>
         <link rel="stylesheet" href="/css/dark.css" />
         <link rel="stylesheet" href="/css/syntax.css" />
+	<meta property="og:type" content="article" />
+        <meta property="og:url" content="$root$$url$" />
+        <meta property="og:title" content="$title$" />
+        $if(og-description)$
+        <meta property="og:description" content="$og-description$" />
+        $endif$
     </head>
     <body>
         <header>
@@ -15,11 +21,11 @@
                 <a href="/" style="float: left">Andi Miller</a>
                 <a href="/cv.html">CV.html</a>
                 <a href="/cv.pdf">CV.pdf</a>
-		<a href="/posts.html">Posts</a>
+                 <a href="/posts.html">Posts</a>
             </nav>
         </header>
 
-	<hr />
+        <hr />
 
         <main role="main">
             <h1>$title$</h1>

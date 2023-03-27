@@ -1,5 +1,6 @@
 ---
 title: Large Language Models and Open Source
+og-description: A brief exploration of Google Bard's ability to discover Open Source code
 ---
 
 Since I got beta access to [Google Bard](https://bard.google.com/) I figured I'd try something out; I've heard they can help people code and will take my job away so let's try and do some coding with it.

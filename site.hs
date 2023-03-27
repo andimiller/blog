@@ -30,7 +30,7 @@ main = hakyll $ do
     match "cv.md" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" rootCtx 
             >>= relativizeUrls
 
     match "posts/*" $ do
@@ -47,7 +47,7 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Posts"               `mappend`
-                    defaultContext
+                    rootCtx 
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
@@ -61,7 +61,7 @@ main = hakyll $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    defaultContext
+                    rootCtx 
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -74,5 +74,8 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+  dateField "date" "%B %e, %Y" `mappend` rootCtx
+--------------------------------------------------------------------------------
+rootCtx :: Context String
+rootCtx =
+  defaultContext <> constField "root" "https://andimiller.net"
