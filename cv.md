@@ -34,6 +34,7 @@ Rust    | Personal projects and open source projects.
 Functional Programming | Experience writing purely functional software in multiple languages.
 Stream Processing      | Kafka, zeromq, RabbitMQ, Pulsar and other high throughput streaming technologies.
 Big Data               | Druid, Pinot, Elastic, Cassandra and Spark for storage and aggregation.
+Data Sketches          | Hyperloglog plus variants, Theta, Tuple, etc.
 Distributed Systems    | Have built concurrent distributed systems with actors and consensus systems.
 Architecture           | Have experience building data processing architectures at scale.
 Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
@@ -61,6 +62,8 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 - Worked in an agile team using scrum development practices.
 - Extended routing products to support new destinations.
 - Worked on redesigning insights products.
+- Gained experience with Pinot.
+- Gained experience with Tuple and Theta sketch usage at scale.
 
 ## Senior Software Engineer, Meltwater UK, 2018 - 2022
 
