@@ -89,6 +89,22 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateBodyCompiler
 
+    create ["sitemap.xml"] $ do
+        route idRoute
+        compile $ do
+            posts <- recentFirst =<< loadAll "posts/*"
+            singlePages <- loadAll (fromList ["index.html", "posts.html", "cv.html"])
+            let pages = posts <> singlePages
+                sitemapCtx = listField "pages" postCtx (return pages) `mappend` rootCtx
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
+
+    create ["robots.txt"] $ do
+         route idRoute
+         compile $ do
+              makeItem ""
+                  >>= loadAndApplyTemplate "templates/robots.txt" rootCtx
+
 --------------------------------------------------------------------------------
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
