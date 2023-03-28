@@ -1,6 +1,7 @@
 ---
 title: Count Distinct at Scale I 
 og-description: Introduction to Probabilistic Data Structures, using Count Distinct and introducing HyperLogLog.
+tags: scala, probabilistic data structures, big data
 ---
 
 This is the first in a series of posts about Probabilistic Data Structures, something I use a lot as a Software Engineer specialising in Big Data.

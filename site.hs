@@ -3,9 +3,29 @@
 import           Data.Monoid (mappend)
 import           Hakyll
 import           Hakyll.Web.Sass (sassCompiler)
+import           Hakyll.Web.Tags (buildTags, tagsRules)
 --------------------------------------------------------------------------------
+
+
 main :: IO ()
 main = hakyll $ do
+    -- build tag list
+    tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+
+    tagsRules tags $ \tag pattern -> do
+        let title = "Posts tagged \"" ++ tag ++ "\""
+        route idRoute
+        compile $ do
+            posts <- recentFirst =<< loadAll pattern
+            let ctx = constField "title" title
+                      `mappend` listField "posts" (postCtxWithTags tags) (return posts)
+                      `mappend` rootCtx
+
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/tag.html" ctx
+                >>= loadAndApplyTemplate "templates/default.html" ctx
+                >>= relativizeUrls
+
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -36,8 +56,8 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
+            >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
 
     create ["posts.html"] $ do
@@ -54,7 +74,6 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
-
     match "index.html" $ do
         route idRoute
         compile $ do
@@ -70,7 +89,9 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateBodyCompiler
 
-
+--------------------------------------------------------------------------------
+postCtxWithTags :: Tags -> Context String
+postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =

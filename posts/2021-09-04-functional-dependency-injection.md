@@ -1,5 +1,6 @@
 ---
 title: Functional Dependency Injection
+tags: scala
 ---
 
 # Introduction
