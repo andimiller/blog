@@ -13,7 +13,7 @@ main = hakyll $ do
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
 
     tagsRules tags $ \tag pattern -> do
-        let title = "Posts tagged \"" ++ tag ++ "\""
+        let title = "Posts tagged '" ++ tag ++ "'"
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll pattern
