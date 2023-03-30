@@ -76,12 +76,13 @@ import squants.information._
 
 // Turn a data size into something friendly for a human
 def humanize(input: Information): Information =
-  input.in(List(Bytes, Kilobytes, Megabytes, Gigabytes).findLast(unit => unit(1) < input).getOrElse(Bits)).rounded(2)
+  input.in(List(Bytes, Kilobytes, Megabytes, Gigabytes)
+    .findLast(unit => unit(1) < input).getOrElse(Bits)).rounded(2)
 
 (4 to 16).map { p =>
   val bucketCount = Math.pow(2, p).toLong          // 2 to the power of precision is how many buckets we have
   val hashSize = Bits(32)                          // we're using 32-bit hashes here, you could use 64-bit
-  val dataSize = humanize(bucketCount * hashSize)  // each bucket's prefix and value are actually just hashSize, so we can multiply by bucket count
+  val dataSize = humanize(bucketCount * hashSize)  // each bucket's size is still hashSize, so we just multiply
   p -> dataSize
 }
 ```
