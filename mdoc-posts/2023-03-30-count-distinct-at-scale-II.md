@@ -101,3 +101,7 @@ def humanize(input: Information): Information =
 ## CPU use
 
 Again most of what we've done is use a hash algorithm, so we're still in `O(N)` territory, as long as the `Set` or similar which you build in has efficient operations for `contains` and `add` and `remove`.
+
+## Simulator
+
+I've written an interactive simulator for Theta sketches, which can be found [here](https://andimiller.net/theta/), try pressing add items on the left to see it fill up.
