@@ -46,7 +46,7 @@ Obviously this is based on probability, and we won't get much accuracy out of a 
 
 What if we could keep track of a load of these for the same data stream?
 
-The HyperLogLog's main mechanic is that it splits our hash into two halves, this is the number you configure a HyperLogLog with, usually between 4 and 16, because we're using a 32-bit hash.
+The HyperLogLog's main mechanic is that it splits our hash into two halves, the split point is the number you configure a HyperLogLog with, usually between 4 and 16, because we're using a 32-bit hash.
 
 ```scala
 val precision = 4 // use the first 4 bytes as a bucket index
