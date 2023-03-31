@@ -1,7 +1,10 @@
 <ul>
     $for(posts)$
         <li>
-            <a href="$url$">$title$</a> - $date$
+            <p>$date$ - <a href="$url$">$title$</a></p>
+            $if(og-description)$
+	    <p class="muted">$og-description$<p>
+            $endif$
         </li>
     $endfor$
 </ul>
