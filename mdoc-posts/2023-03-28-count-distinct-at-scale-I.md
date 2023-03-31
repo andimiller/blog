@@ -26,8 +26,7 @@ def leadingZeroes(b: BitVector): Int = b.toIndexedSeq.takeWhile(_ == false).size
   .map(MurmurHash3.stringHash)  // hash it into a pretty unique id
   .map(BitVector.fromInt(_))    // inspect it as a BitVector, for demo purposes
   .maxBy(leadingZeroes)         // find the one with the most leading zeroes
-  .toBin                        // show it as a binary string for demo purpises
-
+  .toBin                        // show it as a binary string for demo purposes
 ```
 
 As you can guess, there's some kind of relationship between the most leading zeroes we've seen, and how many unique items we've seen; this is the main mechanic used in Count Distinct algorithms.

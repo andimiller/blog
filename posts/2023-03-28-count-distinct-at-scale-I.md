@@ -26,7 +26,7 @@ def leadingZeroes(b: BitVector): Int = b.toIndexedSeq.takeWhile(_ == false).size
   .map(MurmurHash3.stringHash)  // hash it into a pretty unique id
   .map(BitVector.fromInt(_))    // inspect it as a BitVector, for demo purposes
   .maxBy(leadingZeroes)         // find the one with the most leading zeroes
-  .toBin                        // show it as a binary string for demo purpises
+  .toBin                        // show it as a binary string for demo purposes
 // res0: String = "00000000000000000101010101100100"
 ```
 

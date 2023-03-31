@@ -26,7 +26,7 @@ hashToTheta(Int.MaxValue)
 // res2: Double = 1.0
 ```
 
-so we've worked out how to turn a hash into a theta, what does this get us?
+So we've worked out how to turn a hash into a theta, what does this get us?
 
 Let's say we're willing to keep a sample of 10 unique items from our stream, and we're keeping the smallest unique hashes, it might look like this:
 
