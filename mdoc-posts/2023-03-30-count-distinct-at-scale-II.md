@@ -86,6 +86,8 @@ estimate(takeSample(generate(1000000)))
 
 With a 1024 sample, we're down to a 3% error on a million items, which is close enough to be acceptable for many use cases.
 
+Once we have a good sample size, our error rate can actually be very low, for a full table see the [datasketches website](https://datasketches.apache.org/docs/Theta/ThetaErrorTable.html).
+
 ## RAM use
 
 The number of items we keep is usually expressed as a power of 2, just like in the HyperLogLog, so configuring a theta sketch with precision `4` gives you a sample of `16` values, making this comparable to how we configure a HyperLogLog for space efficiency.
