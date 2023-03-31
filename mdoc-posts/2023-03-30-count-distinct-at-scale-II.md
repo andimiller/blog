@@ -32,7 +32,7 @@ import cats.implicits._
 import scala.util.hashing.MurmurHash3
 import scala.collection.SortedSet
 
-val SAMPLE_SIZE: Int = 10
+var SAMPLE_SIZE: Int = 10
 
 
 def takeSample(items: List[String]): SortedSet[Double] =
@@ -74,7 +74,17 @@ estimate(takeSample(generate(100)))
 estimate(takeSample(generate(1000)))
 ```
 
-As you can see the accuracy's not great with 10 items, but we've given it a good try.
+As you can see the accuracy's not great with a 10 item sample, but it's pretty close.
+
+Let's try it with something more realistic:
+
+```scala mdoc
+SAMPLE_SIZE = 1024
+
+estimate(takeSample(generate(1000000)))
+```
+
+With a 1024 sample, we're down to a 3% error on a million items, which is close enough to be acceptable for many use cases.
 
 ## RAM use
 

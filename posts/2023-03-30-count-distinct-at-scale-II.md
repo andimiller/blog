@@ -35,7 +35,7 @@ import cats.implicits._
 import scala.util.hashing.MurmurHash3
 import scala.collection.SortedSet
 
-val SAMPLE_SIZE: Int = 10
+var SAMPLE_SIZE: Int = 10
 // SAMPLE_SIZE: Int = 10
 
 
@@ -94,7 +94,18 @@ estimate(takeSample(generate(1000)))
 // res7: Double = 1076.7317315712578
 ```
 
-As you can see the accuracy's not great with 10 items, but we've given it a good try.
+As you can see the accuracy's not great with a 10 item sample, but it's pretty close.
+
+Let's try it with something more realistic:
+
+```scala
+SAMPLE_SIZE = 1024
+
+estimate(takeSample(generate(1000000)))
+// res9: Double = 970807.4498795744
+```
+
+With a 1024 sample, we're down to a 3% error on a million items, which is close enough to be acceptable for many use cases.
 
 ## RAM use
 
@@ -116,7 +127,7 @@ def humanize(input: Information): Information =
   val dataSize   = humanize(sampleSize * thetaSize)  // each bucket's size is still hashSize, so we just multiply
   p -> dataSize
 }
-// res8: IndexedSeq[(Int, Information)] = Vector(
+// res10: IndexedSeq[(Int, Information)] = Vector(
 //   (4, 128.0 B),
 //   (5, 256.0 B),
 //   (6, 512.0 B),
