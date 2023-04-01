@@ -611,12 +611,17 @@ video {
 }
 
 figure {
-  background: $background;
+  //background: $background;
   color: #8c9ea3;
   color: $code;
   padding: 2.5px 5px;
   border-radius: 6px;
   font-size: 1em;
+}
+
+figcaption {
+  color: $text-muted;
+  text-align: center;
 }
 
 hr {
