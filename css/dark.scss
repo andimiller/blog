@@ -27,10 +27,10 @@ $highlight: #efdb43;
 $select-arrow: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23efefef'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E");
 */
 
-$a: #202B38; // dark bg
+$a: #1d1f21; // dark bg
 $b: #CFDDEE; // text
 $c: #86B3EB; // active
-$d: #000000; // alt bg
+$d: #00273D; // alt bg
 $e: #698CB8; // darker active
 $f: #7E8791; // muted text
 
@@ -605,6 +605,18 @@ img,
 video {
   max-width: 100%;
   height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+figure {
+  background: $background;
+  color: #8c9ea3;
+  color: $code;
+  padding: 2.5px 5px;
+  border-radius: 6px;
+  font-size: 1em;
 }
 
 hr {
