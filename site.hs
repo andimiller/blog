@@ -2,8 +2,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
+import           Hakyll.Core.Compiler (unsafeCompiler)
 import           Hakyll.Web.Sass (sassCompiler)
 import           Hakyll.Web.Tags (buildTags, tagsRules)
+import qualified Text.Pandoc.Filter.Plot as Plot (plotFilter, defaultConfiguration)
+import           Text.Pandoc.Definition (Pandoc, Format)
 --------------------------------------------------------------------------------
 
 
@@ -27,6 +30,10 @@ main = hakyll $ do
                 >>= relativizeUrls
 
     match "images/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "plots/*.png" $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -55,7 +62,7 @@ main = hakyll $ do
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ customPandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
             >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
             >>= relativizeUrls
@@ -104,7 +111,13 @@ main = hakyll $ do
          compile $ do
               makeItem ""
                   >>= loadAndApplyTemplate "templates/robots.txt" rootCtx
-
+--------------------------------------------------------------------------------
+customTransform :: Pandoc -> Compiler Pandoc
+customTransform p = unsafeCompiler (Plot.plotFilter Plot.defaultConfiguration (Just "SVG") p)
+--------------------------------------------------------------------------------
+customPandocCompiler :: Compiler (Item String)
+customPandocCompiler =
+    pandocCompilerWithTransformM defaultHakyllReaderOptions defaultHakyllWriterOptions customTransform
 --------------------------------------------------------------------------------
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx

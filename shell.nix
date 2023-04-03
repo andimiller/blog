@@ -10,7 +10,7 @@ let
 in
 pkgs.mkShell {
 
-  packages = [ tex pkgs.pandoc pkgs.zlib pkgs.gcc pkgs.haskellPackages.pandoc pkgs.haskellPackages.cabal-install pkgs.ghc pkgs.pkg-config pkgs.coursier ];
+  packages = [ tex pkgs.pandoc pkgs.zlib pkgs.gcc pkgs.haskellPackages.pandoc pkgs.haskellPackages.cabal-install pkgs.ghc pkgs.pkg-config pkgs.coursier pkgs.haskellPackages.pandoc-plot pkgs.python3 pkgs.graphviz ];
 
   inputsFrom = [ ];
 }
