@@ -26,11 +26,37 @@ We don't need to care about weights here, so every edge can have weight 1 to kee
 
 I'll start off with a 5x5 grid:
 
+```scala
+import net.andimiller.hedgehogs._
+
+// use a starting pattern, this is a blinker, a 2 phase animation from the game
+val initialPattern = Set((2, 1), (2, 2), (2, 3))
+val nodes = for {
+  x <- 0 to 5
+  y <- 0 to 5
+} yield Node((x, y), initialPattern.contains((x,y)))
+```
 
 And we'd like them to connect to all adjacent cells, including diagonally, so we need some edges:
 
+```scala
+val validRange = (0 to 4).toSet
+val edges = for {
+  x <- 0 to 4
+  y <- 0 to 4
+  tx <- x-1 to x+1
+  ty <- y-1 to y+1
+  if ((x,y) != (tx, ty)) // don't connect to itself
+  if (validRange(tx))    // stay in the grid
+  if (validRange(ty))
+} yield Edge((x,y), (tx, ty),  weight = 1)
+```
 
 We can combine these into our graph:
+```scala
+type LifeGraph = Graph[(Int, Int), Boolean, Int]
+val graph: LifeGraph = Graph.fromIterables(nodes, edges, bidirectional = true).getOrElse(throw new Exception("invalid graph"))
+```
 
 And we'd like some way to render out our grid, so let's do some quick string creation:
 

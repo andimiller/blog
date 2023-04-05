@@ -26,7 +26,7 @@ We don't need to care about weights here, so every edge can have weight 1 to kee
 
 I'll start off with a 5x5 grid:
 
-```scala mdoc:invisible
+```scala mdoc:silent
 import net.andimiller.hedgehogs._
 
 // use a starting pattern, this is a blinker, a 2 phase animation from the game
@@ -39,7 +39,7 @@ val nodes = for {
 
 And we'd like them to connect to all adjacent cells, including diagonally, so we need some edges:
 
-```scala mdoc:invisible
+```scala mdoc:silent
 val validRange = (0 to 4).toSet
 val edges = for {
   x <- 0 to 4
@@ -53,7 +53,7 @@ val edges = for {
 ```
 
 We can combine these into our graph:
-```scala mdoc:invisible
+```scala mdoc:silent
 type LifeGraph = Graph[(Int, Int), Boolean, Int]
 val graph: LifeGraph = Graph.fromIterables(nodes, edges, bidirectional = true).getOrElse(throw new Exception("invalid graph"))
 ```
