@@ -32,8 +32,8 @@ import net.andimiller.hedgehogs._
 // use a starting pattern, this is a blinker, a 2 phase animation from the game
 val initialPattern = Set((2, 1), (2, 2), (2, 3))
 val nodes = for {
-  x <- 0 to 5
-  y <- 0 to 5
+  x <- 0 to 4
+  y <- 0 to 4
 } yield Node((x, y), initialPattern.contains((x,y)))
 ```
 
@@ -55,7 +55,8 @@ val edges = for {
 We can combine these into our graph:
 ```scala
 type LifeGraph = Graph[(Int, Int), Boolean, Int]
-val graph: LifeGraph = Graph.fromIterables(nodes, edges, bidirectional = true).getOrElse(throw new Exception("invalid graph"))
+val graph: LifeGraph = Graph.fromIterables(nodes, edges, bidirectional = true)
+                            .getOrElse(throw new Exception("invalid graph"))
 ```
 
 And we'd like some way to render out our grid, so let's do some quick string creation:
@@ -72,12 +73,11 @@ def render(nodes: Map[(Int, Int), Boolean]): String = nodes.toList
   .mkString("\n")
 
 render(graph.nodes)
-// res0: String = """      
-//   #   
-//   #   
-//   #   
-//       
-//       """
+// res0: String = """     
+//   #  
+//   #  
+//   #  
+//      """
 ```
 
 ## The Algorithm
@@ -114,20 +114,18 @@ def step(g: LifeGraph): LifeGraph = g.mapData {
 
 ```scala
 render(graph.nodes)
-// res1: String = """      
-//   #   
-//   #   
-//   #   
-//       
-//       """
+// res1: String = """     
+//   #  
+//   #  
+//   #  
+//      """
 
 render(step(graph).nodes)
-// res2: String = """      
-//       
-//  ###  
-//       
-//       
-//       """
+// res2: String = """     
+//      
+//  ### 
+//      
+//      """
 ```
 
 Get rotated nerd.
