@@ -6,7 +6,7 @@ tags: scala, open source, personal project, graphs
 
 A friend of mine mentioned [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in a group chat today, so I ended up thinking, most people implement this with arrays, can we do it in a graph?
 
-I just wrote the introduction post for [Hedgehogs](https://github.com/andimiller/hedgehogs), so let's give it a go:
+I just wrote the [introduction post](2023-04-03-introducing-hedgehogs.html) for [Hedgehogs](https://github.com/andimiller/hedgehogs), so let's give it a go:
 
 ## Domain
 

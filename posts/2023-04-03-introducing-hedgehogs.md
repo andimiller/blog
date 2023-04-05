@@ -4,7 +4,7 @@ og-description: Hedgehogs is an open source Scala library for traversing graphs
 tags: scala, open source, personal project, graphs
 ---
 
-This is a quick introduction to a library I made canned [Hedgehogs](https://github.com/andimiller/hedgehogs), it's for cyclic graph traversal, and is cross-built for scala.js for use in frontends.
+This is a quick introduction to a library I made called [Hedgehogs](https://github.com/andimiller/hedgehogs), it's for cyclic graph traversal, and is cross-built for scala.js for use in frontends.
 
 ## Creation 
 
