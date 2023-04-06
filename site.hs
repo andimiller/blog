@@ -124,7 +124,7 @@ postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
-  dateField "date" "%B %e, %Y" `mappend` rootCtx
+  dateField "date" "%0Y-%m-%e" `mappend` rootCtx
 --------------------------------------------------------------------------------
 rootCtx :: Context String
 rootCtx =
