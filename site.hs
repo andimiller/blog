@@ -7,6 +7,8 @@ import           Hakyll.Web.Sass (sassCompiler)
 import           Hakyll.Web.Tags (buildTags, tagsRules)
 import qualified Text.Pandoc.Filter.Plot as Plot (plotFilter, defaultConfiguration)
 import           Text.Pandoc.Definition (Pandoc, Format)
+import           Data.Time.Format (formatTime, defaultTimeLocale)
+import           Data.Time.Clock (getCurrentTime)
 --------------------------------------------------------------------------------
 
 
@@ -100,9 +102,11 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
+            now <- unsafeCompiler getCurrentTime
+            let today = formatTime defaultTimeLocale "%0Y-%m-%d" now
             singlePages <- loadAll (fromList ["index.html", "posts.html", "cv.html"])
             let pages = posts <> singlePages
-                sitemapCtx = listField "pages" postCtx (return pages) `mappend` rootCtx
+                sitemapCtx = listField "pages" (postCtx <> constField "today" today) (return pages) `mappend` constField "today" today `mappend` rootCtx
             makeItem ""
                 >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 
