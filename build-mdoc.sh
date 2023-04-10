@@ -13,3 +13,4 @@ cs launch org.scalameta:mdoc_2.13:2.3.7 -- --classpath $CATS_CORE_213:$SCODEC_CO
 cs launch org.scalameta:mdoc_2.13:2.3.7 -- --classpath $CATS_CORE_213:$SCODEC_CORE_213:$SQUANTS_213 --in ./mdoc-posts/2023-03-30-count-distinct-at-scale-II.md --out ./posts/
 cs launch org.scalameta:mdoc_2.13:2.3.7 -- --classpath $CATS_CORE_213:$HEDGEHOGS_213:$HEDGEHOGS_CIRCE_213:$FS2_IO_213:$CIRCE_PARSER_213 --in ./mdoc-posts/2023-04-03-introducing-hedgehogs.md --out ./posts/
 cs launch org.scalameta:mdoc_2.13:2.3.7 -- --classpath $CATS_CORE_213:$HEDGEHOGS_213:$HEDGEHOGS_CIRCE_213:$FS2_IO_213:$CIRCE_PARSER_213 --in ./mdoc-posts/2023-04-05-conways-game-of-life-graph.md --out ./posts/
+cs launch org.scalameta:mdoc_2.13:2.3.7 -- --classpath $CATS_CORE_213:$HEDGEHOGS_213:$HEDGEHOGS_CIRCE_213:$FS2_IO_213:$CIRCE_PARSER_213 --in ./mdoc-posts/2023-04-09-conways-game-of-life-3d-graph.md --watch --out ./posts/
