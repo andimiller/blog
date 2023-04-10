@@ -1,7 +1,7 @@
 ---
 title: "Conway's Game of Life in 3D with Graphs"
-og-description: A quick run-through of how to implement a 3D Conway's Game of Life using Graphs, using my Hedgehogs library.
-tags: scala, open source, personal project, graphs, 3d, scalajs
+og-description: A first attempt at implementing a 3D Conway's Game of Life using Graphs, using my Hedgehogs library.
+tags: scala, open source, personal project, graphs, 3d
 ---
 
 <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
@@ -64,8 +64,10 @@ window.renderBlocks = function renderBlocks(elementId, filledIn) {
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( 400, 400 );
                                 container.appendChild(renderer.domElement);
-				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-				camera.position.z = 200;
+				camera = new THREE.PerspectiveCamera( 45, 1, 1, 1000 );
+				camera.position.x = 100;
+				camera.position.y = 100;
+				camera.position.z = 100;
 
                                 controls = new TrackballControls(camera, renderer.domElement) // renderer.domElement)
 			}
@@ -212,7 +214,7 @@ render(graph.nodes)
 
 
 <script type="module">
-window.renderBlocks('result0', [{x:2, y:4, z:2}, {x:0, y:2, z:2}, {x:3, y:3, z:3}, {x:1, y:1, z:3}, {x:1, y:3, z:1}, {x:2, y:2, z:4}, {x:1, y:3, z:3}, {x:3, y:1, z:1}, {x:3, y:3, z:1}, {x:1, y:1, z:1}, {x:3, y:1, z:3}, {x:2, y:2, z:0}, {x:4, y:2, z:2}, {x:2, y:0, z:2}]);
+window.renderBlocks('result0', [{x:2, y:1, z:3}, {x:3, y:1, z:2}, {x:2, y:2, z:1}, {x:3, y:2, z:2}, {x:2, y:3, z:2}, {x:3, y:2, z:1}, {x:2, y:3, z:1}, {x:3, y:3, z:3}, {x:1, y:1, z:3}, {x:1, y:2, z:2}, {x:1, y:2, z:3}, {x:1, y:3, z:1}, {x:2, y:2, z:2}, {x:2, y:1, z:1}, {x:1, y:3, z:3}, {x:1, y:1, z:2}, {x:3, y:2, z:3}, {x:2, y:3, z:3}, {x:3, y:1, z:1}, {x:3, y:3, z:1}, {x:1, y:1, z:1}, {x:3, y:1, z:3}, {x:2, y:2, z:3}, {x:2, y:1, z:2}, {x:3, y:3, z:2}, {x:1, y:2, z:1}, {x:1, y:3, z:2}]);
 </script>
 
 
@@ -245,6 +247,22 @@ render(step(step(graph)).nodes)
 
 <script type="module">
 window.renderBlocks('result2', [{x:2, y:2, z:2}]);
+</script>
+
+
+```scala
+render(step(step(step(graph))).nodes)
+// res8: String = "[]"
+```
+
+<center>
+  <div id="result3"></div>
+</center>
+
+
+
+<script type="module">
+window.renderBlocks('result3', []);
 </script>
 
 
