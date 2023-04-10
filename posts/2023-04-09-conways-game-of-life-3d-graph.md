@@ -247,3 +247,5 @@ render(step(step(graph)).nodes)
 window.renderBlocks('result2', [{x:2, y:2, z:2}]);
 </script>
 
+
+Well that exploded then fizzled out, maybe we can find a more stable pattern...

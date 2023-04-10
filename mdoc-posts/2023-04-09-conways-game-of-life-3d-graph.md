@@ -251,3 +251,5 @@ window.renderBlocks('result2', ${render(step(step(graph)).nodes)});
 </script>
 """)
 ```
+
+Well that exploded then fizzled out, maybe we can find a more stable pattern...
