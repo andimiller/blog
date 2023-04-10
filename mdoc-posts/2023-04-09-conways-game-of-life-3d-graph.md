@@ -27,9 +27,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import * as THREE from 'three';
 
-//renderBlocks('render1', [{x:2, y:2, z:2}, {x:2, y:3, z:2}, {x:2, y:1, z:2} ])
-//renderBlocks('render2', [{x:2, y:2, z:2} ])
-
 window.renderBlocks = function renderBlocks(elementId, filledIn) {
                         const container = document.getElementById(elementId);
 			let camera, scene, renderer;
@@ -83,7 +80,7 @@ window.renderBlocks = function renderBlocks(elementId, filledIn) {
 };
 </script>
 
-To follow on from my previous post, I'm going to try and run conway's game of life in 3d, let's see what happens.
+To follow on from my [previous post](2023-04-05-conways-game-of-life-graph.html), I'm going to try and run conway's game of life in 3d, let's see what happens.
 
 I'll just naievely scale the rules from 2d to 3d, we're going from 8 neighbours to 26 neighbours, to scale relative to that:
 
