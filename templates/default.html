@@ -5,7 +5,11 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/svg+xml" href="/images/address-card-regular.svg"> <!-- unmodified address-card-regular from font-awesome used under license -->
+	$if(hide-title)$
+	<title>Andi Miller</title>
+	$else$
         <title>$title$ - Andi Miller</title>
+	$endif$
         <link rel="stylesheet" href="/css/dark.css" />
         <link rel="stylesheet" href="/css/syntax.css" />
         <meta property="og:type" content="article" />
@@ -29,7 +33,9 @@
         <hr />
 
         <main role="main">
+	    $if(hide-title)$$else$
             <h1>$title$</h1>
+	    $endif$
             $if(date)$
                 Posted on $date$
             $endif$
