@@ -1,10 +1,13 @@
 <ul>
     $for(posts)$
+        $if(draft)$
+	$else$
         <li>
             <p>$date$ - <a href="$url$">$title$</a></p>
             $if(og-description)$
 	    <p class="muted">$og-description$<p>
             $endif$
         </li>
+	$endif$
     $endfor$
 </ul>
