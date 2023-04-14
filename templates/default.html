@@ -37,7 +37,7 @@
             <h1>$title$</h1>
 	    $endif$
             $if(date)$
-                Posted on $date$
+                $if(draft)$Drafted$else$Posted$endif$ on $date$
             $endif$
             $body$
         </main>

@@ -1,6 +1,7 @@
 ---
 title: Scaling a Networked Application
 tags: scala, architecture, functional programming
+og-description: How do we horizontally scale networked applications? What's this serverless stuff about?
 draft: true
 ---
 
@@ -47,4 +48,5 @@ CGI is the `Common Gateway Interface`, it's the standard way for web servers to 
 
 Look out for the next post in this series where I introduce the scala-native framework [http4s-cgi](https://github.com/andimiller/http4s-cgi) which allows you to build CGI binaries using http4s.
 
-![A hit counter showing the number of times this page has been loaded, loading from a cgi-bin URL](https://andimiller.net/cgi-bin/hitcounter)
+<img src="https://andimiller.net/cgi-bin/hitcounter" width="48" height="48" alt="A hit counter showing the number of times this page has been loaded, loading from a cgi-bin URL" />
+<figcaption aria-hidden="true">A hit counter showing the number of times this page has been loaded, loading from a cgi-bin URL</figcaption>

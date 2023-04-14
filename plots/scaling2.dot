@@ -2,7 +2,7 @@ digraph G {
   bgcolor="transparent"
   node [ style = filled, color=grey, fontcolor=white, fontname="sans-serif"]
   edge [ color = lightgrey, fontcolor=white, fontname="sans-serif"]
-  "php-fpm" -> worker1
-  "php-fpm" -> worker2
-  "php-fpm" -> workerN
+  "php-fpm" -> script1 
+  "php-fpm" -> script2
+  "php-fpm" -> scriptN
 }
