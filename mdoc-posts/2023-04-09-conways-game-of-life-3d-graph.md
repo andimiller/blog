@@ -37,7 +37,7 @@ window.renderBlocks = function renderBlocks(elementId, filledIn) {
 				scene = new THREE.Scene();
 
 				const geometry = new THREE.BoxGeometry( 10, 10, 10 );
-				const material = new THREE.MeshBasicMaterial({color: 0x698CD8});
+				const material = new THREE.MeshBasicMaterial({color: 0x698CD8, transparent : true, opacity: 0.9});
                                 const edges = new THREE.EdgesGeometry( geometry );
 
                                 filledIn.forEach ( item => {
@@ -50,7 +50,7 @@ window.renderBlocks = function renderBlocks(elementId, filledIn) {
                                 [0,1,2,3,4].forEach( x => {
                                      [0,1,2,3,4].forEach( y => {
                                           [0,1,2,3,4].forEach( z => {
-					     const line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+					     const line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 0.5 } ) );
 					     line.position.x = x * 10 - 25;
 					     line.position.y = y * 10 - 25;
 					     line.position.z = z * 10 - 25;
@@ -60,6 +60,7 @@ window.renderBlocks = function renderBlocks(elementId, filledIn) {
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( 400, 400 );
+                                renderer.antialias = true;
                                 container.appendChild(renderer.domElement);
 				camera = new THREE.PerspectiveCamera( 45, 1, 1, 1000 );
 				camera.position.x = 100;
