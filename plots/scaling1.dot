@@ -1,0 +1,11 @@
+digraph G {
+  bgcolor="transparent"
+  node [ style = filled, color=grey, fontcolor=white, fontname="sans-serif"]
+  edge [ color = lightgrey, fontcolor=white, fontname="sans-serif"]
+  subgraph clusterprocess {
+    label = "java process"
+    java -> worker1
+    java -> worker2
+    java -> workerN
+  }
+}
