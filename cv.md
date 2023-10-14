@@ -3,16 +3,16 @@ title: "Andi Miller - CV"
 title-meta: "Andi Miller - CV"
 pdf-header: "Andi Miller"
 author-meta: "Andi Miller"
-date: "30th March 2023"
+date: "14th October 2023"
 link: "https://andimiller.net/"
 papersize: "a4"
 ---
 
 |
----|---
-Email|[andi@andimiller.net](mailto:andi@andimiller.net)
-Website|[andimiller.net](https://andimiller.net)
-Portfolio|[https://github.com/andimiller/](https://github.com/andimiller/)
+---|---|---
+Email|Website|Portfolio
+[andi@andimiller.net](mailto:andi@andimiller.net)|[andimiller.net](https://andimiller.net)|[https://github.com/andimiller/](https://github.com/andimiller/)
+
 
 # Skills and Experience
 
@@ -40,7 +40,14 @@ Architecture           | Have experience building data processing architectures 
 Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
 Observability          | Enthusiastic about metrics and tracing, having used them extensively.
 
-# Work
+
+
+
+
+\twocolstart
+
+# Interesting Work
+
 ## Patent US10579827B2
 
 - Optimisation for HyperLogLog which can reduce memory use by up to N where N is the number of nodes in the cluster.
@@ -49,8 +56,34 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 ## [IDML](https://idml.io/)
 
 - Open source JSON processing language used for data processing at DataSift and Meltwater
-- JVM first, integrated with Kafka Streams, Hadoop and Elastic.
+- JVM first, integrated with Kafka Streams, Hadoop and ElasticSearch.
 - Implemented with ANTLR and Scala.
+
+\vfill
+\columnbreak
+
+# Open Source Contributions
+
+## [http4s](https://github.com/http4s/http4s)
+
+- added OkHttp client
+- Header class QoL improvements
+
+## [apache/pinot](https://github.com/apache/pinot)
+
+- expanded Theta Sketch support
+- expanded HyperLogLog support
+- added Tuple Sketch support
+
+## [typelevel/cats](https://github.com/typelevel/cats)
+
+- added extra syntax for Bitraverse
+
+## [typelevel/cats-effect](https://github.com/typelevel/cats-effect)
+
+- added `mapK` to `Resource`
+
+\twocolend
 
 \newpage
 
