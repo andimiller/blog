@@ -7,8 +7,8 @@ cabal update
 echo "building site"
 cabal new-install --overwrite-policy=always
 echo "cleaning site"
-~/.cabal/bin/site clean
+~/.local/bin/site clean
 echo "running site build"
-~/.cabal/bin/site build
+~/.local/bin/site build
 echo "making github-pages tarball"
 tar czvf github-pages.tar.gz -C _site .
