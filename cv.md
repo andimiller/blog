@@ -41,9 +41,6 @@ Language Development   | Experience implementing domain specific languages with 
 Observability          | Enthusiastic about metrics and tracing, having used them extensively.
 
 
-
-
-
 \twocolstart
 
 # Interesting Work
