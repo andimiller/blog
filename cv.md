@@ -3,7 +3,7 @@ title: "Andi Miller - CV"
 title-meta: "Andi Miller - CV"
 pdf-header: "Andi Miller"
 author-meta: "Andi Miller"
-date: "14th October 2023"
+date: "15th November 2023"
 link: "https://andimiller.net/"
 papersize: "a4"
 ---
@@ -20,7 +20,7 @@ Email|Website|Portfolio
 
 |
 - | -----------
-Scala   | 8 years of experience, with 5 years of purely functional development, current main language.
+Scala   | 10 years of experience, with 7 years of purely functional development, current main language.
 Java    | Experience using Java for backend development.
 C       | Commercial experience writing patches for OpenSIPS and Asterisk while at Gradwell.
 Python  | Used for many projects including open source infrastructure for EVE Online alliances.
@@ -71,6 +71,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 - expanded Theta Sketch support
 - expanded HyperLogLog support
 - added Tuple Sketch support
+- added UltraLogLog support
 
 ## [typelevel/cats](https://github.com/typelevel/cats)
 
