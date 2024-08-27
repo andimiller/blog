@@ -3,16 +3,15 @@ title: "Andi Miller - CV"
 title-meta: "Andi Miller - CV"
 pdf-header: "Andi Miller"
 author-meta: "Andi Miller"
-date: "15th November 2023"
+date: "27th July 2024"
 link: "https://andimiller.net/"
 papersize: "a4"
 ---
 
 |
----|---|---
-Email|Website|Portfolio
-[andi@andimiller.net](mailto:andi@andimiller.net)|[andimiller.net](https://andimiller.net)|[https://github.com/andimiller/](https://github.com/andimiller/)
-
+---|---|---|---
+Email|Website|Citizenships|Portfolio
+[andi@andimiller.net](mailto:andi@andimiller.net)|[andimiller.net](https://andimiller.net)|NZ, UK|[github.com/andimiller/](https://github.com/andimiller/)
 
 # Skills and Experience
 
@@ -20,7 +19,7 @@ Email|Website|Portfolio
 
 |
 - | -----------
-Scala   | 10 years of experience, with 7 years of purely functional development, current main language.
+Scala   | {yearsSince(2013-06)} years of experience, with {yearsSince(2016-06)} years of purely functional development, current main language.
 Java    | Experience using Java for backend development.
 C       | Commercial experience writing patches for OpenSIPS and Asterisk while at Gradwell.
 Python  | Used for many projects including open source infrastructure for EVE Online alliances.
