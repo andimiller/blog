@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andi Miller">
+  <title>Graphs? What are they good for?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Graphs? What are they good for?</h1>
+  <p class="author">Andi Miller</p>
+  <p class="date">1st August 2025</p>
+</section>
+
+<section>
+<section id="whats-a-graph" class="title-slide slide level1">
+<h1>What’s a graph?</h1>
+
+</section>
+<section id="a-structure-with-nodes-and-edges"
+class="title-slide slide level2">
+<h2>A structure with Nodes and Edges</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Undirected Pages: 1 -->
+<svg width="129pt" height="188pt"
+ viewBox="0.00 0.00 128.58 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>Undirected</title>
+<!-- Node1 -->
+<g id="node1" class="node">
+<title>Node1</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="77.79" cy="-162" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="77.79" y="-157.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Node1</text>
+</g>
+<!-- Node2 -->
+<g id="node2" class="node">
+<title>Node2</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="42.79" cy="-90" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="42.79" y="-85.33" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Node2</text>
+</g>
+<!-- Node1&#45;&#45;Node2 -->
+<g id="edge1" class="edge">
+<title>Node1&#45;&#45;Node2</title>
+<path fill="none" stroke="darkslategray" d="M69.32,-144.05C63.81,-133.05 56.67,-118.76 51.18,-107.79"/>
+</g>
+<!-- Node3 -->
+<g id="node3" class="node">
+<title>Node3</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="77.79" cy="-18" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="77.79" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Node3</text>
+</g>
+<!-- Node2&#45;&#45;Node3 -->
+<g id="edge2" class="edge">
+<title>Node2&#45;&#45;Node3</title>
+<path fill="none" stroke="darkslategray" d="M51.26,-72.05C56.77,-61.05 63.91,-46.76 69.4,-35.79"/>
+</g>
+<!-- Node3&#45;&#45;Node1 -->
+<g id="edge3" class="edge">
+<title>Node3&#45;&#45;Node1</title>
+<path fill="none" stroke="darkslategray" d="M84.68,-35.86C88.5,-46.12 92.85,-59.59 94.79,-72 97.26,-87.81 97.26,-92.19 94.79,-108 92.85,-120.41 88.5,-133.88 84.68,-144.14"/>
+</g>
+</g>
+</svg>
+
+</section>
+</section>
+<section>
+<section id="what-properties-can-they-have"
+class="title-slide slide level1">
+<h1>What properties can they have?</h1>
+
+</section>
+<section id="sometimes-theyre-directed"
+class="title-slide slide level2">
+<h2>Sometimes they’re directed</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Directed Pages: 1 -->
+<svg width="129pt" height="188pt"
+ viewBox="0.00 0.00 128.58 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>Directed</title>
+<!-- Node1 -->
+<g id="node1" class="node">
+<title>Node1</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="77.79" cy="-162" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="77.79" y="-157.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Node1</text>
+</g>
+<!-- Node2 -->
+<g id="node2" class="node">
+<title>Node2</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="42.79" cy="-90" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="42.79" y="-85.33" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Node2</text>
+</g>
+<!-- Node1&#45;&gt;Node2 -->
+<g id="edge1" class="edge">
+<title>Node1&#45;&gt;Node2</title>
+<path fill="none" stroke="darkslategray" d="M69.32,-144.05C65.36,-136.14 60.56,-126.54 56.13,-117.69"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="51.73,-108.88 60.23,-115.81 53.42,-112.26 56.2,-117.82 56.2,-117.82 56.2,-117.82 53.42,-112.26 52.18,-119.84 51.73,-108.88"/>
+</g>
+<!-- Node3 -->
+<g id="node3" class="node">
+<title>Node3</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="77.79" cy="-18" rx="42.79" ry="18"/>
+<text text-anchor="middle" x="77.79" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Node3</text>
+</g>
+<!-- Node2&#45;&gt;Node3 -->
+<g id="edge2" class="edge">
+<title>Node2&#45;&gt;Node3</title>
+<path fill="none" stroke="darkslategray" d="M51.26,-72.05C55.22,-64.14 60.02,-54.54 64.45,-45.69"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="68.85,-36.88 68.4,-47.84 67.16,-40.26 64.38,-45.82 64.38,-45.82 64.38,-45.82 67.16,-40.26 60.35,-43.81 68.85,-36.88"/>
+</g>
+<!-- Node3&#45;&gt;Node1 -->
+<g id="edge3" class="edge">
+<title>Node3&#45;&gt;Node1</title>
+<path fill="none" stroke="darkslategray" d="M84.68,-35.86C88.5,-46.12 92.85,-59.59 94.79,-72 97.26,-87.81 97.26,-92.19 94.79,-108 93.46,-116.53 90.98,-125.57 88.32,-133.71"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="85.08,-142.99 84.13,-132.07 86.33,-139.42 88.38,-133.55 88.38,-133.55 88.38,-133.55 86.33,-139.42 92.63,-135.04 85.08,-142.99"/>
+</g>
+</g>
+</svg>
+
+</section>
+
+<section id="sometimes-theyre-acyclic" class="title-slide slide level2">
+<h2>Sometimes they’re acyclic</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Acyclic Pages: 1 -->
+<svg width="190pt" height="116pt"
+ viewBox="0.00 0.00 190.42 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>Acyclic</title>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="91.21" cy="-90" rx="30.16" ry="18"/>
+<text text-anchor="middle" x="91.21" y="-85.33" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Add</text>
+</g>
+<!-- l1 -->
+<g id="node2" class="node">
+<title>l1</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="41.21" cy="-18" rx="41.21" ry="18"/>
+<text text-anchor="middle" x="41.21" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal</text>
+</g>
+<!-- a&#45;&gt;l1 -->
+<g id="edge1" class="edge">
+<title>a&#45;&gt;l1</title>
+<path fill="none" stroke="darkslategray" d="M79.87,-73.12C73.82,-64.64 66.23,-54.02 59.38,-44.43"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="53.57,-36.3 63.04,-41.82 55.77,-39.38 59.38,-44.44 59.38,-44.44 59.38,-44.44 55.77,-39.38 55.72,-47.05 53.57,-36.3"/>
+</g>
+<!-- l2 -->
+<g id="node3" class="node">
+<title>l2</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="141.21" cy="-18" rx="41.21" ry="18"/>
+<text text-anchor="middle" x="141.21" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal</text>
+</g>
+<!-- a&#45;&gt;l2 -->
+<g id="edge2" class="edge">
+<title>a&#45;&gt;l2</title>
+<path fill="none" stroke="darkslategray" d="M102.56,-73.12C108.61,-64.64 116.2,-54.02 123.05,-44.43"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="128.86,-36.3 126.71,-47.05 126.66,-39.38 123.04,-44.44 123.04,-44.44 123.04,-44.44 126.66,-39.38 119.38,-41.82 128.86,-36.3"/>
+</g>
+</g>
+</svg>
+
+</section>
+
+<section id="sometimes-they-store-data"
+class="title-slide slide level2">
+<h2>Sometimes they store data</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Data Pages: 1 -->
+<svg width="246pt" height="133pt"
+ viewBox="0.00 0.00 245.78 133.25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 129.25)">
+<title>Data</title>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="118.89" cy="-107.25" rx="30.16" ry="18"/>
+<text text-anchor="middle" x="118.89" y="-102.58" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Add</text>
+</g>
+<!-- l1 -->
+<g id="node2" class="node">
+<title>l1</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="54.89" cy="-18" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="54.89" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(1)</text>
+</g>
+<!-- a&#45;&gt;l1 -->
+<g id="edge1" class="edge">
+<title>a&#45;&gt;l1</title>
+<path fill="none" stroke="darkslategray" d="M107.15,-90.25C97.77,-77.45 84.44,-59.28 73.59,-44.49"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="67.93,-36.78 77.47,-42.18 70.17,-39.83 73.84,-44.84 73.84,-44.84 73.84,-44.84 70.17,-39.83 70.22,-47.5 67.93,-36.78"/>
+<text text-anchor="middle" x="123" y="-57.95" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Contains</text>
+</g>
+<!-- l2 -->
+<g id="node3" class="node">
+<title>l2</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="182.89" cy="-18" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="182.89" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(2)</text>
+</g>
+<!-- a&#45;&gt;l2 -->
+<g id="edge2" class="edge">
+<title>a&#45;&gt;l2</title>
+<path fill="none" stroke="darkslategray" d="M136.48,-92.45C143.4,-86.44 151.07,-79 156.89,-71.25 162.62,-63.62 167.66,-54.52 171.73,-46.08"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="175.86,-37 175.82,-47.97 174.29,-40.44 171.72,-46.11 171.72,-46.11 171.72,-46.11 174.29,-40.44 167.62,-44.25 175.86,-37"/>
+<text text-anchor="middle" x="197.52" y="-57.95" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Contains</text>
+</g>
+</g>
+</svg>
+
+</section>
+
+<section id="sometimes-they-store-a-lot-of-data"
+class="title-slide slide level2">
+<h2>Sometimes they store a lot of data</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Data Pages: 1 -->
+<svg width="654pt" height="233pt"
+ viewBox="0.00 0.00 653.92 233.21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 229.21)">
+<title>Data</title>
+<!-- amarr -->
+<g id="node1" class="node">
+<title>amarr</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="278.95" cy="-195.16" rx="77.6" ry="30.05"/>
+<text text-anchor="middle" x="278.95" y="-199.11" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Amarr</text>
+<text text-anchor="middle" x="278.95" y="-181.86" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=1.0</text>
+</g>
+<!-- jita -->
+<g id="node2" class="node">
+<title>jita</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="74.95" cy="-30.05" rx="74.95" ry="30.05"/>
+<text text-anchor="middle" x="74.95" y="-34" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Jita</text>
+<text text-anchor="middle" x="74.95" y="-16.75" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=0.9</text>
+</g>
+<!-- amarr&#45;&#45;jita -->
+<g id="edge3" class="edge">
+<title>amarr&#45;&#45;jita</title>
+<path fill="none" stroke="darkslategray" d="M230.8,-171.38C217.65,-164.32 203.73,-156.03 191.7,-147.1 156.13,-120.7 120.84,-83.73 98.52,-58.66"/>
+<text text-anchor="middle" x="233.33" y="-133.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Wormhole</text>
+<text text-anchor="middle" x="233.33" y="-116.55" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">class=A641</text>
+<text text-anchor="middle" x="233.33" y="-99.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">size=2b</text>
+<text text-anchor="middle" x="233.33" y="-82.05" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">age=10h</text>
+</g>
+<!-- sarumprime -->
+<g id="node3" class="node">
+<title>sarumprime</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="278.95" cy="-30.05" rx="111.02" ry="30.05"/>
+<text text-anchor="middle" x="278.95" y="-34" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Sarum Prime</text>
+<text text-anchor="middle" x="278.95" y="-16.75" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=1.0</text>
+</g>
+<!-- amarr&#45;&#45;sarumprime -->
+<g id="edge1" class="edge">
+<title>amarr&#45;&#45;sarumprime</title>
+<path fill="none" stroke="darkslategray" d="M278.95,-164.62C278.95,-135.06 278.95,-89.85 278.95,-60.37"/>
+<text text-anchor="middle" x="308.2" y="-107.93" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Stargate</text>
+</g>
+<!-- korazorprime -->
+<g id="node4" class="node">
+<title>korazorprime</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="526.95" cy="-30.05" rx="118.97" ry="30.05"/>
+<text text-anchor="middle" x="526.95" y="-34" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Kor&#45;Azor Prime</text>
+<text text-anchor="middle" x="526.95" y="-16.75" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=0.9</text>
+</g>
+<!-- amarr&#45;&#45;korazorprime -->
+<g id="edge2" class="edge">
+<title>amarr&#45;&#45;korazorprime</title>
+<path fill="none" stroke="darkslategray" d="M317.7,-168.67C363.2,-138.75 438.39,-89.3 485.16,-58.54"/>
+<text text-anchor="middle" x="482.92" y="-107.93" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Stargate</text>
+</g>
+</g>
+</svg>
+
+</section>
+
+<section id="sometimes-they-have-subgraphs"
+class="title-slide slide level2">
+<h2>Sometimes they have subgraphs</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Subgraphs Pages: 1 -->
+<svg width="730pt" height="388pt"
+ viewBox="0.00 0.00 730.00 388.21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 384.21)">
+<title>Subgraphs</title>
+<g id="clust1" class="cluster">
+<title>amarr</title>
+<polygon fill="none" stroke="orange" points="8,-8 8,-372.21 524,-372.21 524,-8 8,-8"/>
+<text text-anchor="middle" x="266" y="-354.91" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Amarr</text>
+</g>
+<g id="clust2" class="cluster">
+<title>domain</title>
+<polygon fill="none" stroke="yellow" points="16,-16 16,-338.96 254,-338.96 254,-16 16,-16"/>
+<text text-anchor="middle" x="135" y="-321.66" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Domain</text>
+</g>
+<g id="clust3" class="cluster">
+<title>korazor</title>
+<polygon fill="none" stroke="lightgrey" points="262,-16 262,-117.35 516,-117.35 516,-16 262,-16"/>
+<text text-anchor="middle" x="389" y="-100.05" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Kor&#45;Azor</text>
+</g>
+<g id="clust4" class="cluster">
+<title>caldari</title>
+<polygon fill="none" stroke="blue" points="532,-8 532,-150.6 714,-150.6 714,-8 532,-8"/>
+<text text-anchor="middle" x="623" y="-133.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Jita</text>
+</g>
+<g id="clust5" class="cluster">
+<title>theforge</title>
+<polygon fill="none" stroke="lightblue" points="540,-16 540,-117.35 706,-117.35 706,-16 540,-16"/>
+<text text-anchor="middle" x="623" y="-100.05" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">The Forge</text>
+</g>
+<!-- amarr -->
+<g id="node1" class="node">
+<title>amarr</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="168" cy="-275.66" rx="77.6" ry="30.05"/>
+<text text-anchor="middle" x="168" y="-279.61" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Amarr</text>
+<text text-anchor="middle" x="168" y="-262.36" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=1.0</text>
+</g>
+<!-- sarumprime -->
+<g id="node2" class="node">
+<title>sarumprime</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="135" cy="-54.05" rx="111.02" ry="30.05"/>
+<text text-anchor="middle" x="135" y="-58" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Sarum Prime</text>
+<text text-anchor="middle" x="135" y="-40.75" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=1.0</text>
+</g>
+<!-- amarr&#45;&#45;sarumprime -->
+<g id="edge1" class="edge">
+<title>amarr&#45;&#45;sarumprime</title>
+<path fill="none" stroke="darkslategray" d="M163.62,-245.49C157.31,-203.49 145.72,-126.4 139.4,-84.33"/>
+<text text-anchor="middle" x="190.12" y="-188.43" font-family="Helvetica,sans-Serif" font-size="14.00" fill="grey">Stargate</text>
+</g>
+<!-- korazorprime -->
+<g id="node3" class="node">
+<title>korazorprime</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="389" cy="-54.05" rx="118.97" ry="30.05"/>
+<text text-anchor="middle" x="389" y="-58" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Kor&#45;Azor Prime</text>
+<text text-anchor="middle" x="389" y="-40.75" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=0.9</text>
+</g>
+<!-- amarr&#45;&#45;korazorprime -->
+<g id="edge2" class="edge">
+<title>amarr&#45;&#45;korazorprime</title>
+<path fill="none" stroke="darkslategray" d="M200.16,-248.05C207.78,-241.5 215.78,-234.42 223,-227.6 274.56,-178.97 331.07,-118.58 363.07,-83.66"/>
+<text text-anchor="middle" x="317.71" y="-188.43" font-family="Helvetica,sans-Serif" font-size="14.00" fill="grey">Stargate</text>
+</g>
+<!-- jita -->
+<g id="node4" class="node">
+<title>jita</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="623" cy="-54.05" rx="74.95" ry="30.05"/>
+<text text-anchor="middle" x="623" y="-58" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">name=Jita</text>
+<text text-anchor="middle" x="623" y="-40.75" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">security=0.9</text>
+</g>
+<!-- amarr&#45;&#45;jita -->
+<g id="edge3" class="edge">
+<title>amarr&#45;&#45;jita</title>
+<path fill="none" stroke="darkslategray" d="M236.42,-261.17C310.88,-244.18 431.16,-209.79 520,-150.6 549.23,-131.13 578.17,-103.33 597.89,-82.73"/>
+<text text-anchor="middle" x="544.71" y="-214.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="grey">Wormhole</text>
+<text text-anchor="middle" x="544.71" y="-197.05" font-family="Helvetica,sans-Serif" font-size="14.00" fill="grey">class=A641</text>
+<text text-anchor="middle" x="544.71" y="-179.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="grey">size=2b</text>
+<text text-anchor="middle" x="544.71" y="-162.55" font-family="Helvetica,sans-Serif" font-size="14.00" fill="grey">age=10h</text>
+</g>
+</g>
+</svg>
+
+</section>
+</section>
+<section>
+<section id="wait-whats-a-tree-then" class="title-slide slide level1">
+<h1>Wait what’s a tree then?</h1>
+
+</section>
+<section id="a-tree-is" class="title-slide slide level2">
+<h2>A tree is:</h2>
+<ul>
+<li>Directed</li>
+<li>Acyclic</li>
+<li>Each node has 0 or 1 parents</li>
+</ul>
+</section>
+
+<section id="this-is-not-a-tree" class="title-slide slide level2">
+<h2>This is not a tree</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: NotTree Pages: 1 -->
+<svg width="246pt" height="188pt"
+ viewBox="0.00 0.00 245.78 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>NotTree</title>
+<!-- result -->
+<g id="node1" class="node">
+<title>result</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="83.89" cy="-162" rx="30.16" ry="18"/>
+<text text-anchor="middle" x="83.89" y="-157.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Add</text>
+</g>
+<!-- a -->
+<g id="node2" class="node">
+<title>a</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="112.89" cy="-90" rx="30.16" ry="18"/>
+<text text-anchor="middle" x="112.89" y="-85.33" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Add</text>
+</g>
+<!-- result&#45;&gt;a -->
+<g id="edge1" class="edge">
+<title>result&#45;&gt;a</title>
+<path fill="none" stroke="darkslategray" d="M90.91,-144.05C94.15,-136.23 98.08,-126.75 101.71,-117.98"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="105.47,-108.91 105.8,-119.88 104.02,-112.41 101.64,-118.15 101.64,-118.15 101.64,-118.15 104.02,-112.41 97.48,-116.43 105.47,-108.91"/>
+</g>
+<!-- l1 -->
+<g id="node3" class="node">
+<title>l1</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="54.89" cy="-18" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="54.89" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(1)</text>
+</g>
+<!-- result&#45;&gt;l1 -->
+<g id="edge2" class="edge">
+<title>result&#45;&gt;l1</title>
+<path fill="none" stroke="darkslategray" d="M80.39,-143.87C75.49,-119.88 66.53,-75.99 60.64,-47.16"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="58.65,-37.38 65.06,-46.28 59.4,-41.09 60.65,-47.18 60.65,-47.18 60.65,-47.18 59.4,-41.09 56.24,-48.08 58.65,-37.38"/>
+</g>
+<!-- a&#45;&gt;l1 -->
+<g id="edge3" class="edge">
+<title>a&#45;&gt;l1</title>
+<path fill="none" stroke="darkslategray" d="M100.02,-73.46C92.86,-64.83 83.79,-53.88 75.66,-44.06"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="69.31,-36.41 79.16,-41.23 71.73,-39.32 75.69,-44.11 75.69,-44.11 75.69,-44.11 71.73,-39.32 72.23,-46.98 69.31,-36.41"/>
+</g>
+<!-- l2 -->
+<g id="node4" class="node">
+<title>l2</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="182.89" cy="-18" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="182.89" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(2)</text>
+</g>
+<!-- a&#45;&gt;l2 -->
+<g id="edge4" class="edge">
+<title>a&#45;&gt;l2</title>
+<path fill="none" stroke="darkslategray" d="M127.74,-74.15C136.73,-65.16 148.42,-53.47 158.72,-43.18"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="165.74,-36.15 161.85,-46.41 163.06,-38.83 158.67,-43.22 158.67,-43.22 158.67,-43.22 163.06,-38.83 155.49,-40.04 165.74,-36.15"/>
+</g>
+</g>
+</svg>
+
+</section>
+
+<section id="but-we-can-turn-it-into-a-tree-by-duplicating"
+class="title-slide slide level2">
+<h2>But we can turn it into a tree by duplicating</h2>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 12.2.0 (0)
+ -->
+<!-- Title: Tree Pages: 1 -->
+<svg width="285pt" height="188pt"
+ viewBox="0.00 0.00 284.78 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>Tree</title>
+<!-- result -->
+<g id="node1" class="node">
+<title>result</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="169.89" cy="-162" rx="30.16" ry="18"/>
+<text text-anchor="middle" x="169.89" y="-157.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Add</text>
+</g>
+<!-- a -->
+<g id="node2" class="node">
+<title>a</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="118.89" cy="-90" rx="30.16" ry="18"/>
+<text text-anchor="middle" x="118.89" y="-85.33" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Add</text>
+</g>
+<!-- result&#45;&gt;a -->
+<g id="edge1" class="edge">
+<title>result&#45;&gt;a</title>
+<path fill="none" stroke="darkslategray" d="M158.32,-145.12C151.99,-136.43 144.02,-125.49 136.9,-115.72"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="131.14,-107.81 140.66,-113.24 133.36,-110.86 137.02,-115.89 137.02,-115.89 137.02,-115.89 133.36,-110.86 133.39,-118.54 131.14,-107.81"/>
+</g>
+<!-- l12 -->
+<g id="node3" class="node">
+<title>l12</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="221.89" cy="-90" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="221.89" y="-85.33" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(1)</text>
+</g>
+<!-- result&#45;&gt;l12 -->
+<g id="edge2" class="edge">
+<title>result&#45;&gt;l12</title>
+<path fill="none" stroke="darkslategray" d="M181.69,-145.12C187.96,-136.68 195.81,-126.1 202.91,-116.55"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="208.69,-108.78 206.34,-119.49 206.43,-111.81 202.72,-116.8 202.72,-116.8 202.72,-116.8 206.43,-111.81 199.11,-114.12 208.69,-108.78"/>
+</g>
+<!-- l1 -->
+<g id="node4" class="node">
+<title>l1</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="54.89" cy="-18" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="54.89" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(1)</text>
+</g>
+<!-- a&#45;&gt;l1 -->
+<g id="edge3" class="edge">
+<title>a&#45;&gt;l1</title>
+<path fill="none" stroke="darkslategray" d="M105,-73.81C96.96,-65.02 86.64,-53.73 77.46,-43.69"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="70.92,-36.53 80.98,-40.87 73.47,-39.32 77.66,-43.91 77.66,-43.91 77.66,-43.91 73.47,-39.32 74.34,-46.94 70.92,-36.53"/>
+</g>
+<!-- l2 -->
+<g id="node5" class="node">
+<title>l2</title>
+<ellipse fill="darkslategray" stroke="darkslategray" cx="182.89" cy="-18" rx="54.89" ry="18"/>
+<text text-anchor="middle" x="182.89" y="-13.32" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">Literal(2)</text>
+</g>
+<!-- a&#45;&gt;l2 -->
+<g id="edge4" class="edge">
+<title>a&#45;&gt;l2</title>
+<path fill="none" stroke="darkslategray" d="M132.78,-73.81C140.82,-65.02 151.14,-53.73 160.32,-43.69"/>
+<polygon fill="darkslategray" stroke="darkslategray" points="166.87,-36.53 163.44,-46.94 164.31,-39.32 160.12,-43.91 160.12,-43.91 160.12,-43.91 164.31,-39.32 156.8,-40.87 166.87,-36.53"/>
+</g>
+</g>
+</svg>
+
+</section>
+</section>
+<section>
+<section id="introducing-hedgehogs" class="title-slide slide level1">
+<h1>Introducing Hedgehogs</h1>
+<ul>
+<li>Purely FP Open source Graph library</li>
+<li>Cats-based</li>
+<li>Cross-built for Scala 2 and 3</li>
+<li>Cross-built for JVM/JS (and Native in a branch)</li>
+</ul>
+</section>
+<section id="core-types---simplegraph" class="title-slide slide level2">
+<h2>Core Types - SimpleGraph</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// data</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> nodes<span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> edges<span class="op">:</span> <span class="ex">Set</span><span class="op">[(</span>Id<span class="op">,</span> Id<span class="op">)]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// graph operations</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">outgoing</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">):</span> <span class="ex">Set</span><span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">inbound</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">):</span> <span class="ex">Set</span><span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> reverse<span class="op">:</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span> <span class="co">// reverses all edges</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// modifiers</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">addNode</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">):</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">removeNode</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">):</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">addEdge</span><span class="op">(</span>from<span class="op">:</span> Id<span class="op">,</span> to<span class="op">:</span> Id<span class="op">):</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">removeEdge</span><span class="op">(</span>from<span class="op">:</span> Id<span class="op">,</span> to<span class="op">:</span> Id<span class="op">):</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+
+<section id="core-types---datagraph" class="title-slide slide level2">
+<h2>Core Types - DataGraph</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> DataGraph<span class="op">[</span>Id<span class="op">,</span> NodeData<span class="op">,</span> EdgeData<span class="op">]</span> <span class="kw">extends</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span> <span class="op">{</span> self <span class="op">=&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// data</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> nodeMap<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span>Id<span class="op">,</span> NodeData<span class="op">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> edgeMap<span class="op">:</span> <span class="ex">Map</span><span class="op">[(</span>Id<span class="op">,</span> Id<span class="op">),</span> EdgeData<span class="op">]</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// extra graph operations</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">outgoingEdges</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">):</span> <span class="ex">Map</span><span class="op">[</span>Id<span class="op">,</span> EdgeData<span class="op">]</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">incomingEdges</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">):</span> <span class="ex">Map</span><span class="op">[</span>Id<span class="op">,</span> EdgeData<span class="op">]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// extra modify operations</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">addNode</span><span class="op">(</span>id<span class="op">:</span> Id<span class="op">,</span> data<span class="op">:</span> NodeData<span class="op">):</span> DataGraph<span class="op">[</span>Id<span class="op">,</span> NodeData<span class="op">,</span> EdgeData<span class="op">]</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">addEdge</span><span class="op">(</span>from<span class="op">:</span> Id<span class="op">,</span> to<span class="op">:</span> Id<span class="op">,</span> data<span class="op">:</span> EdgeData<span class="op">):</span> DataGraph<span class="op">[</span>Id<span class="op">,</span> NodeData<span class="op">,</span> EdgeData<span class="op">]</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+
+<section id="included-core-algorithms" class="title-slide slide level2">
+<h2>Included Core Algorithms</h2>
+<ul>
+<li><code>Dijkstra</code> - routefinding</li>
+<li><code>Connectivity</code> - check how many unconnected subgraphs
+exist</li>
+<li><code>Dag</code> - check if a graph is a dag</li>
+</ul>
+</section>
+<section id="dijkstra-example" class="slide level3">
+<h3>Dijkstra Example</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> <span class="fu">Dijkstra</span><span class="op">(</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    DataGraph<span class="op">.</span>empty<span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">String</span><span class="op">,</span> <span class="bu">Int</span><span class="op">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span><span class="op">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span><span class="op">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;c&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span><span class="op">)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;d&quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span><span class="op">)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addEdge</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addEdge</span><span class="op">(</span><span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addEdge</span><span class="op">(</span><span class="st">&quot;c&quot;</span><span class="op">,</span> <span class="st">&quot;d&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addEdge</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">)(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;d&quot;</span><span class="op">)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>res1<span class="op">:</span> <span class="ex">Option</span><span class="op">[(</span><span class="bu">Int</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="ex">String</span><span class="op">])]</span> <span class="op">=</span> <span class="bu">Some</span><span class="op">(</span>value <span class="op">=</span> <span class="op">(</span><span class="dv">3</span><span class="op">,</span> <span class="ex">List</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span><span class="op">,</span> <span class="st">&quot;d&quot;</span><span class="op">)))</span></span></code></pre></div>
+</section>
+<section id="dijkstra-demo" class="slide level3">
+<h3>Dijkstra Demo</h3>
+<p><a href="https://andimiller.net/hedgehogs-demo-2/">scala.js
+demo</a></p>
+</section>
+
+<section id="modules---mermaid" class="title-slide slide level2">
+<h2>Modules - Mermaid</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scala<span class="op">&gt;</span> Mermaid<span class="op">.</span><span class="fu">flowchart</span><span class="op">(</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    DataGraph<span class="op">.</span>empty<span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">String</span><span class="op">,</span> <span class="bu">Int</span><span class="op">]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;A&quot;</span><span class="op">,</span> <span class="st">&quot;Node A&quot;</span><span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;B&quot;</span><span class="op">,</span> <span class="st">&quot;Node B&quot;</span><span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addNode</span><span class="op">(</span><span class="st">&quot;C&quot;</span><span class="op">,</span> <span class="st">&quot;Node C&quot;</span><span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addEdge</span><span class="op">(</span><span class="st">&quot;A&quot;</span><span class="op">,</span> <span class="st">&quot;B&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addEdge</span><span class="op">(</span><span class="st">&quot;B&quot;</span><span class="op">,</span> <span class="st">&quot;C&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">)(</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    extractNodeId <span class="op">=</span> identity<span class="op">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    extractEdgeName <span class="op">=</span> _<span class="op">.</span>toString<span class="op">.</span>some<span class="op">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    extractNodeName <span class="op">=</span> _<span class="op">.</span>some</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">)()</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>res1<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> <span class="st">&quot;&quot;&quot;flowchart TD</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">  A[&quot;Node A&quot;]</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">  B[&quot;Node B&quot;]</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">  C[&quot;Node C&quot;]</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">  A --&gt;|1| B</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">  B --&gt;|2| C</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
+</section>
+<section id="section" class="slide level3">
+<h3></h3>
+<p><img data-src="./mermaid.png" /></p>
+</section>
+</section>
+<section id="so-what-did-i-need-all-this-for"
+class="title-slide slide level1">
+<h1>So what did I need all this for?</h1>
+<aside class="notes">
+<p>So what did I need all of this for?</p>
+</aside>
+</section>
+
+<section>
+<section id="eve-online" class="title-slide slide level1">
+<h1>EVE Online</h1>
+<p><img data-src="./eve.png" /></p>
+<aside class="notes">
+<p>(pause) EVE Online is a 20 year old space themed MMO</p>
+</aside>
+</section>
+<section id="map" class="title-slide slide level2">
+<h2>Map</h2>
+<p><img data-src="./evemap.png" /></p>
+<aside class="notes">
+<p>It’s got a pretty large star map with almost 8000 solar systems</p>
+</aside>
+</section>
+
+<section id="route-map" class="title-slide slide level2">
+<h2>Route Map</h2>
+<p><img data-src="./evemaproute.png" /></p>
+<aside class="notes">
+<p>These solar systems are connected by stargates, and the ingame map
+can do some basic routefinding, but, that’s not good enough for a player
+base famous for loving spreadsheets…</p>
+</aside>
+</section>
+
+<section id="third-party-tooling" class="title-slide slide level2">
+<h2>Third party tooling</h2>
+<ul>
+<li>EVE has APIs for players to use</li>
+<li>Originally SOAP, moved to OpenAPI</li>
+<li>Includes map data, and where characters and assets are</li>
+</ul>
+</section>
+<section id="section-1" class="slide level3">
+<h3></h3>
+<p><img data-src="esi.png" /></p>
+</section>
+
+<section id="siggy" class="title-slide slide level2">
+<h2>Siggy</h2>
+<ul>
+<li>Tool for keeping track of Wormholes, dynamically connecting
+systems</li>
+<li>10+ years old</li>
+<li>Written in PHP and C#</li>
+<li>I had to port it to linux</li>
+</ul>
+</section>
+<section id="section-2" class="slide level3">
+<h3></h3>
+<p><img data-src="siggy.png" /></p>
+</section>
+<section id="section-3" class="slide level3">
+<h3></h3>
+<p><img data-src="siggyroute.png" /></p>
+<aside class="notes">
+<p>So obviously I’d rather not write dijkstra in PHP, so this hooks back
+into a scala service, passing the dynamic list of systems and overlaying
+it with the static systems</p>
+</aside>
+</section>
+
+<section id="zkillboard" class="title-slide slide level2">
+<h2>ZKillboard</h2>
+<p><img data-src="zkill.png" /></p>
+<aside class="notes">
+<p>We’ve got some big community-run websites that store killmails, pvp
+kills essentially, and it has a public feed of them as they happen,
+so…</p>
+</aside>
+</section>
+</section>
+<section>
+<section id="killmail-router" class="title-slide slide level1">
+<h1>killmail-router</h1>
+<ul>
+<li>Monitor PVP activity from zkillboard live</li>
+<li>Pull which solar systems are connected to our home on siggy</li>
+<li>Check the activity is within 10 jumps, report if it is</li>
+</ul>
+<p><a
+href="https://github.com/andimiller/killmail-router">killmail-router</a></p>
+<aside class="notes">
+<p>I’ve got a discord bot written in scala which monitors that feed,
+checks which systems my corporation is connected to and feeds back on
+pvp activity happening nearby</p>
+</aside>
+</section>
+<section id="section-4" class="slide level3">
+<h3></h3>
+<p><img data-src="discord.png" /></p>
+</section>
+<section id="section-5" class="slide level3">
+<h3></h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">routes</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> rage-chain</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  filter</span><span class="kw">: </span><span class="ch">|-</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    (and</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      (not (== root.chain_distance.31002238 null))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      (not (&lt;= root.chain_distance.31002238 10))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      (not (== root.killmail.wormhole_class 7))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">webhook</span><span class="kw">:</span><span class="at"> https://discord.com/api/webhooks/redacted</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">  template</span><span class="kw">: </span><span class="ch">|-</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    Activity ${root.chain_distance.31002238} jumps down the Rage chain https://zkillboard.com/kill/${root.killID} ${root.trumpets}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> my-corp</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">  filter</span><span class="kw">: </span><span class="ch">|-</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    (let</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      [</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        (my-corp (== root.corporation_id 123456))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      (or</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        (apply root.killmail.victim my-corp)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        (exists root.killmail.attackers my-corp)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">webhook</span><span class="kw">:</span><span class="at"> https://discord.com/api/webhooks/redacted</span></span></code></pre></div>
+<aside class="notes">
+<p>here’s an example of a config, you can see some lisp there checking
+the distance which has been hydrated into the objects, and another quick
+example of forwarding any kills related to a specific corporation</p>
+</aside>
+</section></section>
+<section>
+<section id="but-what-if-we-wanted-to-execute-a-graph"
+class="title-slide slide level1">
+<h1>But what if we wanted to execute a graph…</h1>
+
+</section>
+<section id="revisiting-visitors" class="title-slide slide level2">
+<h2>Revisiting Visitors</h2>
+<aside class="notes">
+<p>You’ve probably seen them before, the common way of executing a tree
+would be a visitor, so let’s go through them</p>
+</aside>
+</section>
+<section id="oop-style-visitor" class="slide level3">
+<h3>OOP Style Visitor</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Visitor<span class="op">[</span>A<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">visit</span><span class="op">(</span>a<span class="op">:</span> A<span class="op">):</span> <span class="bu">Unit</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>Here’s a normal OOP style visitor, you implement this trait, when it
+visits a thing you do an effect, simple enough</p>
+</aside>
+</section>
+<section id="fp-style-visitor" class="slide level3">
+<h3>FP Style Visitor</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Visitor<span class="op">[</span>F<span class="op">[</span>_<span class="op">],</span> A<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">visit</span><span class="op">(</span>a<span class="op">:</span> A<span class="op">):</span> F<span class="op">[</span><span class="bu">Unit</span><span class="op">]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>We can make it a bit more FP by using an IO monad, now our effects
+are explicit, but they’re still just doing some kind of side-effect, and
+our graphs are immutable…</p>
+</aside>
+</section>
+<section id="so-lets-add-traverse-to-our-graph-types"
+class="slide level3">
+<h3>So let’s add traverse to our Graph types</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> DataGraph<span class="op">[</span>Id<span class="op">,</span> NodeData<span class="op">,</span> EdgeData<span class="op">]</span> <span class="kw">extends</span> SimpleGraph<span class="op">[</span>Id<span class="op">]</span> <span class="op">{</span> self <span class="op">=&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// for simple graphs</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> traverse<span class="op">[</span>F<span class="op">[</span>_<span class="op">]:</span> Applicative<span class="op">,</span> Id2<span class="op">](</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      f<span class="op">:</span> Id <span class="op">=&gt;</span> F<span class="op">[</span>Id2<span class="op">]</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">):</span> F<span class="op">[</span>DataGraph<span class="op">[</span>Id2<span class="op">,</span> NodeData<span class="op">,</span> EdgeData<span class="op">]]</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// for data graphs</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> traverseNode<span class="op">[</span>F<span class="op">[</span>_<span class="op">]:</span> Applicative<span class="op">,</span> NodeData2<span class="op">](</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      f<span class="op">:</span> <span class="op">(</span>Id<span class="op">,</span> NodeData<span class="op">)</span> <span class="op">=&gt;</span> F<span class="op">[</span>NodeData2<span class="op">]</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">):</span> F<span class="op">[</span>DataGraph<span class="op">[</span>Id<span class="op">,</span> NodeData2<span class="op">,</span> EdgeData<span class="op">]]</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>So let’s add traverse to our graph types, we can do a traverse over
+the ids for a simple graph, and traverse the nodes on a data graph,
+letting us transform the data in the nodes</p>
+</aside>
+</section>
+<section id="module---dag-visitor" class="slide level3">
+<h3>Module - dag-visitor</h3>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode scala"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> DagVisitor<span class="op">[</span>F<span class="op">[</span>_<span class="op">],</span> Id<span class="op">,</span> InputData<span class="op">,</span> OutputData<span class="op">,</span> EdgeData<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">run</span><span class="op">(</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      id<span class="op">:</span> Id<span class="op">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      node<span class="op">:</span> InputData<span class="op">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      graph<span class="op">:</span> DataGraph<span class="op">[</span>Id<span class="op">,</span> Either<span class="op">[</span>InputData<span class="op">,</span> OutputData<span class="op">],</span> EdgeData<span class="op">],</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      inputs<span class="op">:</span> <span class="ex">Map</span><span class="op">[(</span>Id<span class="op">,</span> EdgeData<span class="op">),</span> OutputData<span class="op">]</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">):</span> F<span class="op">[</span>OutputData<span class="op">]</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<aside class="notes">
+<p>This lets me run effects across a graph, this method’s called for
+each node we run, it’s run when all of the dependencies have finished
+running, and is passed dependencies in the <code>inputs</code> Map</p>
+<p>And we can even go one better, we can make it run in parallel</p>
+</aside>
+</section>
+<section id="visitor-demo" class="slide level3">
+<h3>Visitor Demo</h3>
+<p><a href="https://andimiller.net/hedgehogs-demo/">scala.js
+demo</a></p>
+</section>
+</section>
+<section>
+<section id="graphs-and-llms" class="title-slide slide level1">
+<h1>Graphs and LLMs</h1>
+
+</section>
+<section id="why-are-they-a-good-fit" class="title-slide slide level2">
+<h2>Why are they a good fit?</h2>
+<ul>
+<li>Context</li>
+<li>Context</li>
+<li>Context</li>
+</ul>
+<aside class="notes">
+<p>We can resolve up to N nearby nodes and provide them as context to
+the LLM, this is graph based RAG</p>
+</aside>
+</section>
+</section>
+<section id="any-questions" class="title-slide slide level1">
+<h1>Any Questions?</h1>
+
+</section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/search/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
