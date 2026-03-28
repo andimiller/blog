@@ -10,6 +10,7 @@ executable site
                   , hakyll-sass == 0.2.4
                   , pandoc-plot == 1.5.5
                   , pandoc-types == 1.22.2.1
+                  , pandoc == 2.19.2
                   , time == 1.9.3
 
   ghc-options:      -threaded

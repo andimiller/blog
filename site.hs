@@ -7,6 +7,7 @@ import           Hakyll.Web.Sass (sassCompiler)
 import           Hakyll.Web.Tags (buildTags, tagsRules)
 import qualified Text.Pandoc.Filter.Plot as Plot (plotFilter, defaultConfiguration)
 import           Text.Pandoc.Definition (Pandoc, Format)
+import           Text.Pandoc (WriterOptions, ReaderOptions, writeJSON, readJSON)
 import           Data.Time.Format (formatTime, defaultTimeLocale)
 import           Data.Time.Clock (getCurrentTime)
 --------------------------------------------------------------------------------
@@ -116,12 +117,25 @@ main = hakyll $ do
               makeItem ""
                   >>= loadAndApplyTemplate "templates/robots.txt" rootCtx
 --------------------------------------------------------------------------------
+type Script = String 
+
+transformer
+  :: Script         -- e.g. "/absolute/path/filter.py"
+  -> ReaderOptions  -- e.g.  defaultHakyllReaderOptions
+  -> WriterOptions  -- e.g.  defaultHakyllWriterOptions
+  -> (Pandoc -> Compiler Pandoc)
+transformer script reader_opts writer_opts pandoc = 
+    do let input_json = writeJSON writer_opts pandoc
+       output_json <- unixFilter script [] input_json
+       return $ 
+          readJSON reader_opts output_json 
+--------------------------------------------------------------------------------
 customTransform :: Pandoc -> Compiler Pandoc
 customTransform p = unsafeCompiler (Plot.plotFilter Plot.defaultConfiguration (Just "SVG") p)
 --------------------------------------------------------------------------------
 customPandocCompiler :: Compiler (Item String)
 customPandocCompiler =
-    pandocCompilerWithTransformM defaultHakyllReaderOptions defaultHakyllWriterOptions customTransform
+    pandocCompilerWithTransformM defaultHakyllReaderOptions defaultHakyllWriterOptions (customTransform >>= (return . (transformer "./dates.py" defaultHakyllReaderOptions defaultHakyllWriterOptions)))
 --------------------------------------------------------------------------------
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
