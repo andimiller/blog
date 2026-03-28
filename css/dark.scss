@@ -629,6 +629,12 @@ hr {
   border-top: 1px solid $border;
 }
 
+nav a ~ a + a {
+  border-left: 1px solid $border;
+  padding-left: 0.5em;
+  margin-left: 0.5em;
+}
+
 table {
   border-collapse: collapse;
   margin-bottom: 10px;
