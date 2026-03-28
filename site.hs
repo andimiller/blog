@@ -7,7 +7,9 @@ import           Hakyll.Web.Sass (sassCompiler)
 import           Hakyll.Web.Tags (buildTags, tagsRules)
 import qualified Text.Pandoc.Filter.Plot as Plot (plotFilter, defaultConfiguration)
 import           Text.Pandoc.Definition (Pandoc, Format)
-import           Text.Pandoc (WriterOptions, ReaderOptions, writeJSON, readJSON)
+import           Text.Pandoc (WriterOptions, ReaderOptions, writeJSON, readJSON, runPure)
+import qualified Data.Text as T
+import           Control.Monad ((>=>))
 import           Data.Time.Format (formatTime, defaultTimeLocale)
 import           Data.Time.Clock (getCurrentTime)
 --------------------------------------------------------------------------------
@@ -41,6 +43,10 @@ main = hakyll $ do
         compile copyFileCompiler
 
     match "cv.pdf" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "card.vcf" $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -90,11 +96,18 @@ main = hakyll $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    rootCtx 
+                    rootCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
+                >>= relativizeUrls
+
+    match "card.html" $ do
+        route idRoute
+        compile $ do
+            getResourceBody
+                >>= loadAndApplyTemplate "templates/default.html" rootCtx
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateBodyCompiler
@@ -124,18 +137,18 @@ transformer
   -> ReaderOptions  -- e.g.  defaultHakyllReaderOptions
   -> WriterOptions  -- e.g.  defaultHakyllWriterOptions
   -> (Pandoc -> Compiler Pandoc)
-transformer script reader_opts writer_opts pandoc = 
-    do let input_json = writeJSON writer_opts pandoc
-       output_json <- unixFilter script [] input_json
-       return $ 
-          readJSON reader_opts output_json 
+transformer script reader_opts writer_opts pandoc =
+    do let Right input_text = runPure (writeJSON writer_opts pandoc)
+       output_json <- unixFilter script [] (T.unpack input_text)
+       let Right result = runPure (readJSON reader_opts (T.pack output_json))
+       return result
 --------------------------------------------------------------------------------
 customTransform :: Pandoc -> Compiler Pandoc
 customTransform p = unsafeCompiler (Plot.plotFilter Plot.defaultConfiguration (Just "SVG") p)
 --------------------------------------------------------------------------------
 customPandocCompiler :: Compiler (Item String)
 customPandocCompiler =
-    pandocCompilerWithTransformM defaultHakyllReaderOptions defaultHakyllWriterOptions (customTransform >>= (return . (transformer "./dates.py" defaultHakyllReaderOptions defaultHakyllWriterOptions)))
+    pandocCompilerWithTransformM defaultHakyllReaderOptions defaultHakyllWriterOptions (customTransform >=> transformer "./dates.py" defaultHakyllReaderOptions defaultHakyllWriterOptions)
 --------------------------------------------------------------------------------
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx

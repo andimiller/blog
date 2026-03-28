@@ -27,7 +27,7 @@ def today():
     now = datetime.now()
     return str(now.date())
 
-pattern = re.compile('\{(.*)\}')
+pattern = re.compile(r'\{(.*)\}')
 
 def metavars(elem, doc):
     if type(elem) == Str:
