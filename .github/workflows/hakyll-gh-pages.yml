@@ -25,15 +25,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
       - name: Setup Nix
-        uses: cachix/install-nix-action@v18 # We build with nix to manage haskell and stuff
+        uses: cachix/install-nix-action@v27
         with:
-          nix_path: nixpkgs=channel:nixos-unstable        
+          nix_path: nixpkgs=channel:nixos-unstable
       - name: Set up cache
-        uses: actions/cache@v2 # We cache 
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cabal/store
@@ -42,7 +42,7 @@ jobs:
           key: cabal-and-nix-store
       - run: ./build.sh
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
 
   # Deployment job
   deploy:
@@ -54,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
