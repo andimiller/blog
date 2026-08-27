@@ -1,9 +1,9 @@
 ---
-title: "Andi Miller - CV"
+title: "Andi Miller - Big Data Systems Engineer"
 title-meta: "Andi Miller - CV"
-pdf-header: "Andi Miller"
+pdf-header: "Andi Miller - CV" 
 author-meta: "Andi Miller"
-date: "27th July 2024"
+date: "27th August 2026"
 link: "https://andimiller.net/"
 papersize: "a4"
 ---
@@ -20,24 +20,23 @@ Email|Website|Citizenships|Portfolio
 |
 - | -----------
 Scala   | {yearsSince(2013-06)} years of experience, with {yearsSince(2016-06)} years of purely functional development, current main language.
-Java    | Experience using Java for backend development.
+Java    | Experience with backend Java; Apache Pinot contributions
 C       | Commercial experience writing patches for OpenSIPS and Asterisk while at Gradwell.
 Python  | Used for many projects including open source infrastructure for EVE Online alliances.
 Haskell | Personal projects and small work tooling.
-Rust    | Personal projects and open source projects.
 
 ## Technologies
 
 |
 --- | ---------
-Functional Programming | Experience writing purely functional software in multiple languages.
-Stream Processing      | Kafka, zeromq, RabbitMQ, Pulsar and other high throughput streaming technologies.
-Big Data               | Druid, Pinot, Elastic, Cassandra and Spark for storage and aggregation.
-Data Sketches          | Hyperloglog plus variants, Theta, Tuple, etc.
-Distributed Systems    | Have built concurrent distributed systems with actors and consensus systems.
-Architecture           | Have experience building data processing architectures at scale.
-Language Development   | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
-Observability          | Enthusiastic about metrics and tracing, having used them extensively.
+Functional Programming  | Experience writing purely functional software in multiple languages.
+Stream Processing       | Kafka, zeromq, RabbitMQ, Pulsar and other high throughput streaming technologies.
+Big Data                | Druid, Pinot, Elastic, Cassandra and Spark for storage and aggregation.
+Data Sketches           | HyperLogLog plus variants, Theta, Tuple, etc.
+Artificial Intelligence | Classification and Regression model training, building with LLMs, MCP, etc.
+Distributed Systems     | Have built concurrent distributed systems with actors and consensus systems.
+Language Development    | Experience implementing domain specific languages with technologies including ANTLR, fastparse and droste.
+Observability           | Metrics, tracing, alerting, etc.
 
 
 \twocolstart
@@ -46,8 +45,8 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 
 ## Patent US10579827B2
 
-- Optimisation for HyperLogLog which can reduce memory use by up to N where N is the number of nodes in the cluster.
-- Included lazy bucketing and pre-allocation of data around an Elastic cluster.
+- Optimisation for HyperLogLog which reduces memory use by sharding around the cluster.
+- Included lazy bucketing and pre-allocation of the sharded data. 
 
 ## [IDML](https://idml.io/)
 
@@ -88,17 +87,15 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 
 ## Senior Software Engineer, Permutive, 2022 - Present
 
-- Worked on purely functional Scala microservices with the typelevel stack.
-- Worked in an agile team using scrum development practices.
-- Extended routing products to support new destinations.
-- Worked on redesigning insights products.
-- Gained experience with Pinot.
-- Gained experience with Tuple and Theta sketch usage at scale.
+- Scala / Typelevel / Agile
+- Extended insights products, rebuilt on Pinot, average query time 30s => 1s, costs 4x lower.
+- Rebuilt data query layers around Pinot and Iceberg.
+- Built out MCP product for customers.
+- Added LLM embedding-based advertising cohorts to contextual product.
 
 ## Senior Software Engineer, Meltwater UK, 2018 - 2022
 
-- Developed purely functional Scala microservices with the typelevel stack.
-- Worked in an agile team using scrum development practices.
+- Scala / Typelevel / Agile
 - Practiced DevOps maintaining our own infrastructure and being on call.
 - Practiced Type Driven Development and Test Driven Development.
 - Maintained an in-house Domain Specific Language for transforming JSON at scale in Scala.
@@ -113,7 +110,7 @@ Observability          | Enthusiastic about metrics and tracing, having used the
 - Worked on privacy-first analysis of Facebook data in Facebook's datacentre.
 - Worked on the DataSift open source client libraries, with a focus on the Python one
 
-## VoIP Engineer, Gradwell dot com Limited, 2011 - 2012
+## VoIP Engineer, Gradwell dot com Limited, Placement Year, 2011 - 2012
 
 - Maintained and developed a large award-winning Open Source VoIP stack
 - Regularly worked with both Support and Sysadmin departments
