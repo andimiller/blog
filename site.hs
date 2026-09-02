@@ -7,7 +7,8 @@ import           Hakyll.Web.Sass (sassCompiler)
 import           Hakyll.Web.Tags (buildTags, tagsRules)
 import qualified Text.Pandoc.Filter.Plot as Plot (plotFilter, defaultConfiguration)
 import           Text.Pandoc.Definition (Pandoc, Format)
-import           Text.Pandoc (WriterOptions, ReaderOptions, writeJSON, readJSON, runPure)
+import           Text.Pandoc (WriterOptions, ReaderOptions, readerExtensions, writeJSON, readJSON, runPure)
+import           Text.Pandoc.Extensions (enableExtension, Extension( Ext_fenced_divs ))
 import qualified Data.Text as T
 import           Control.Monad ((>=>))
 import           Data.Time.Format (formatTime, defaultTimeLocale)
@@ -146,9 +147,12 @@ transformer script reader_opts writer_opts pandoc =
 customTransform :: Pandoc -> Compiler Pandoc
 customTransform p = unsafeCompiler (Plot.plotFilter Plot.defaultConfiguration (Just "SVG") p)
 --------------------------------------------------------------------------------
+readerOptions :: ReaderOptions
+readerOptions = defaultHakyllReaderOptions { readerExtensions = enableExtension Ext_fenced_divs (readerExtensions defaultHakyllReaderOptions) }
+
 customPandocCompiler :: Compiler (Item String)
 customPandocCompiler =
-    pandocCompilerWithTransformM defaultHakyllReaderOptions defaultHakyllWriterOptions (customTransform >=> transformer "./dates.py" defaultHakyllReaderOptions defaultHakyllWriterOptions)
+    pandocCompilerWithTransformM readerOptions defaultHakyllWriterOptions (customTransform >=> transformer "./dates.py" readerOptions defaultHakyllWriterOptions)
 --------------------------------------------------------------------------------
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
